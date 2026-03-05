@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="เติมเงิน - PanderX Topup">
+    <title>เติมเงิน | PanderX</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f3e8ff 50%, #f8fafc 100%);
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.08), 
+                        0 4px 12px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(14, 165, 233, 0.2);
+        }
+
+        /* Balance Hero */
+        .balance-hero {
+            background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #8b5cf6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Payment Method Card */
+        .payment-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-card.active {
+            border-color: #0ea5e9;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .payment-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .bank-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            object-fit: contain;
+            background: #f8fafc;
+            padding: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Upload Zone */
+        .upload-zone {
+            border: 2px dashed #cbd5e1;
+            border-radius: 20px;
+            padding: 48px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-zone:hover {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .upload-zone.has-file {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-primary.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spinner 0.8s linear infinite;
+        }
+
+        @keyframes spinner {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            padding: 8px 16px;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 8px;
+            color: #0ea5e9;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .copy-btn:hover {
+            background: rgba(14, 165, 233, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        /* Toast Notification */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+        }
+
+        .toast {
+            padding: 16px 24px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(400px);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid;
+            pointer-events: all;
+            min-width: 300px;
+        }
+
+        .toast.show { transform: translateX(0); }
+        .toast.success { border-left-color: #10b981; }
+        .toast.error { border-left-color: #ef4444; }
+        .toast.info { border-left-color: #0ea5e9; }
+
+        /* Profile Dropdown (from index.html) */
+        .avatar-glass {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+            flex-shrink: 0;
+            line-height: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar-glass img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .balance-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(129, 140, 248, 0.1) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            color: #0284c7;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .profile-dropdown-container {
+            position: relative;
+        }
+
+        .glass-dropdown {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            width: 280px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.95);
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 100;
+        }
+
+        .glass-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .glass-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 24px;
+            width: 16px;
+            height: 16px;
+            background: rgba(255, 255, 255, 0.95);
+            transform: rotate(45deg);
+            border-left: 2px solid rgba(255, 255, 255, 1);
+            border-top: 2px solid rgba(255, 255, 255, 1);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            margin: 4px 8px;
+            color: #475569;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 12px;
+            border-bottom: none;
+            text-decoration: none;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(56, 189, 248, 0.08);
+            color: #0ea5e9;
+        }
+
+        .dropdown-icon {
+            width: 20px;
+            height: 20px;
+            color: #94a3b8;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .dropdown-item:hover .dropdown-icon {
+            color: #0ea5e9;
+            stroke: #0ea5e9;
+        }
+
+        .profile-trigger {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 6px 6px 16px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .profile-trigger:hover, .profile-trigger.active {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: #94a3b8;
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: #cbd5e1;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .glass-dropdown {
+                position: fixed;
+                top: 80px;
+                right: 16px;
+                left: 16px;
+                width: auto;
+                max-width: 400px;
+            }
+            .glass-dropdown::before { right: 40px; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Navbar (Same as index.html) -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="./index.html" class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-sky-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm">
+                        P
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent">PanderX</span>
+                </a>
+
+                <!-- User Profile Section -->
+                <div class="flex items-center gap-3" id="authSection">
+                    <div id="authLoading" class="hidden">
+                        <div class="w-24 h-10 rounded-full bg-slate-200 animate-pulse"></div>
+                    </div>
+
+                    <div id="userProfile" class="hidden profile-dropdown-container">
+                        <button class="profile-trigger" id="profileTrigger">
+                            <span class="hidden sm:block text-sm font-semibold text-slate-700 max-w-[100px] truncate" id="displayName">User</span>
+                            
+                            <div class="balance-pill hidden sm:flex">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2L2 9l10 13 10-13-10-7z"/>
+                                </svg>
+                                <span id="userBalance">0</span>
+                            </div>
+
+                            <div class="avatar-glass" id="userAvatar">U</div>
+                            <svg class="w-4 h-4 text-slate-400 transition-transform duration-300" id="dropdownArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <!-- Dropdown Menu -->
+                        <div class="glass-dropdown" id="profileDropdown">
+                            <div class="p-4 border-b border-slate-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="avatar-glass w-12 h-12 text-lg" id="dropdownAvatar">U</div>
+                                    <div class="min-w-0 flex-1">
+                                        <div class="font-bold text-slate-800 truncate" id="dropdownName">User</div>
+                                        <div class="text-xs text-slate-500 flex items-center gap-1.5 mt-0.5">
+                                            <span class="w-2 h-2 bg-emerald-500 rounded-full shadow-[0_0_0_2px_rgba(16,185,129,0.2)]"></span>
+                                            <span>ออนไลน์</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3 pt-3 border-t border-slate-100 flex justify-between items-center">
+                                    <span class="text-sm text-slate-500">ยอดคงเหลือ</span>
+                                    <div class="balance-pill">
+                                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 2L2 9l10 13 10-13-10-7z"/>
+                                        </svg>
+                                        <span id="dropdownBalance">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="py-2">
+                                <a href="./index.html" class="dropdown-item">
+                                    <svg class="dropdown-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                                    </svg>
+                                    <span>หน้าแรก</span>
+                                </a>
+
+                                <div class="dropdown-item" onclick="handleLogout()">
+                                    <svg class="dropdown-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                    </svg>
+                                    <span>ออกจากระบบ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        
+        <!-- Balance Hero Section -->
+        <div class="balance-hero rounded-3xl p-8 mb-8 text-white relative animate-slide-up" style="animation-delay: 0.1s;">
+            <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <div class="text-white/80 text-sm font-medium mb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-wallet"></i>
+                        ยอดเงินคงเหลือในบัญชี
+                    </div>
+                    <div class="text-4xl md:text-5xl font-bold tracking-tight" id="currentBalance">
+                        ฿0
+                    </div>
+                </div>
+                <button onclick="refreshBalance()" class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-xl font-medium transition-all flex items-center gap-2 border border-white/30">
+                    <i class="fa-solid fa-rotate" id="refreshIcon"></i>
+                    รีเฟรชยอด
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Left Column: Payment Methods & Upload -->
+            <div class="space-y-6">
+                
+                <!-- Payment Methods (Bank & TrueMoney) -->
+                <div class="glass-card rounded-2xl p-6 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-800">ช่องทางการโอนเงิน</h2>
+                            <p class="text-sm text-slate-500">เลือกช่องทางที่ต้องการโอนเงินเข้า</p>
+                        </div>
+                    </div>
+                    
+                    <div id="paymentMethodsList" class="space-y-4">
+                        <!-- Loading State -->
+                        <div class="flex items-center justify-center py-8 text-slate-400">
+                            <div class="animate-spin w-6 h-6 border-3 border-sky-200 border-t-sky-500 rounded-full mr-3"></div>
+                            กำลังโหลดข้อมูลช่องทางการชำระเงิน...
+                        </div>
+                    </div>
+
+                    <!-- Empty State (No config) -->
+                    <div id="noPaymentConfig" class="hidden empty-state bg-slate-50 rounded-2xl border border-dashed border-slate-300">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <h3 class="text-lg font-semibold text-slate-700 mb-2">ยังไม่มีการตั้งค่าช่องทางการชำระเงิน</h3>
+                        <p class="text-sm mb-4">กรุณาติดต่อผู้ดูแลระบบเพื่อตั้งค่าบัญชีธนาคารหรือ True Money</p>
+                    </div>
+                </div>
+
+                <!-- Upload Slip Form -->
+                <div class="glass-card rounded-2xl p-6 animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-receipt"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-800">แจ้งการโอนเงิน</h2>
+                            <p class="text-sm text-slate-500">อัพโหลดหลักฐานการโอนเงิน</p>
+                        </div>
+                    </div>
+                    
+                    <form id="topupForm" onsubmit="submitTopup(event)" class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">อัพโหลดสลิปโอนเงิน <span class="text-red-500">*</span></label>
+                            <div class="upload-zone" id="uploadArea" onclick="document.getElementById('slipInput').click()">
+                                <input type="file" id="slipInput" accept="image/*" hidden onchange="handleFileSelect(event)">
+                                <div id="uploadPlaceholder" class="space-y-3">
+                                    <div class="text-slate-400 text-4xl mb-2">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    </div>
+                                    <p class="text-slate-700 font-semibold">คลิกเพื่ออัพโหลดสลิป</p>
+                                    <p class="text-slate-400 text-sm">รองรับไฟล์ JPG, PNG ขนาดไม่เกิน 5MB</p>
+                                </div>
+                                <div id="uploadPreview" class="hidden">
+                                    <img id="previewImage" class="max-h-48 mx-auto rounded-xl shadow-lg mb-4 border-4 border-white" />
+                                    <p class="text-emerald-600 font-semibold flex items-center justify-center gap-2">
+                                        <i class="fa-solid fa-circle-check text-xl"></i>
+                                        อัพโหลดสำเร็จ
+                                    </p>
+                                    <button type="button" onclick="event.stopPropagation(); clearFile()" class="mt-3 text-slate-400 hover:text-red-500 text-sm font-medium transition-colors">
+                                        <i class="fa-solid fa-trash-can mr-1"></i> ลบรูปและเลือกใหม่
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">หมายเหตุ (ถ้ามี)</label>
+                            <textarea id="transferNote" rows="2" placeholder="เช่น โอนจากบัญชีอื่น, ชื่อบัญชีไม่ตรงกับระบบ..."
+                                class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-sky-500 focus:outline-none focus:bg-white transition-all text-slate-700 resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="btn-primary text-lg font-bold rounded-xl" disabled>
+                            <span id="btnText">แจ้งการโอนเงิน</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Column: History -->
+            <div class="space-y-6">
+                <!-- History -->
+                <div class="glass-card rounded-2xl p-6 animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-400 to-rose-500 flex items-center justify-center text-white">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-800">ประวัติการเติมเงิน</h3>
+                                <p class="text-sm text-slate-500">รายการล่าสุดของคุณ</p>
+                            </div>
+                        </div>
+                        <button onclick="loadHistory()" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition-colors">
+                            <i class="fa-solid fa-rotate"></i>
+                        </button>
+                    </div>
+                    
+                    <div id="historyList" class="space-y-3 max-h-[600px] overflow-y-auto pr-2">
+                        <div class="flex items-center justify-center py-8 text-slate-400">
+                            <div class="animate-spin w-6 h-6 border-3 border-sky-200 border-t-sky-500 rounded-full mr-3"></div>
+                            กำลังโหลด...
+                        </div>
+                    </div>
+                    
+                    <div id="loadMoreContainer" class="mt-4 text-center hidden">
+                        <button onclick="loadMoreHistory()" class="w-full py-3 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-xl font-medium transition-colors border border-slate-200">
+                            โหลดเพิ่มเติม
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center text-slate-400 text-sm py-8 mt-8 border-t border-slate-200/60">
+        <p>&copy; 2026 PanderX | ระบบเติมเงินอัตโนมัติ</p>
+    </footer>
+
+    <script type="module">
+        import { auth, db } from './firebase-config.js';
+        import { 
+            onAuthStateChanged, 
+            signOut 
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { 
+            doc, 
+            getDoc, 
+            setDoc, 
+            updateDoc,
+            collection,
+            query,
+            where,
+            orderBy,
+            limit,
+            startAfter,
+            getDocs,
+            serverTimestamp,
+            onSnapshot,
+            addDoc
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { 
+            getStorage, 
+            ref, 
+            uploadBytes, 
+            getDownloadURL 
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+        const storage = getStorage();
+        let currentUser = null;
+        let userData = null;
+        let selectedPaymentMethod = null;
+        let paymentMethods = [];
+        let lastHistoryDoc = null;
+        let unsubscribeBalance = null;
+        let isDropdownOpen = false;
+
+        // Profile Dropdown Elements
+        const els = {
+            loading: document.getElementById('authLoading'),
+            profile: document.getElementById('userProfile'),
+            displayName: document.getElementById('displayName'),
+            userAvatar: document.getElementById('userAvatar'),
+            dropdownName: document.getElementById('dropdownName'),
+            dropdownAvatar: document.getElementById('dropdownAvatar'),
+            dropdown: document.getElementById('profileDropdown'),
+            trigger: document.getElementById('profileTrigger'),
+            arrow: document.getElementById('dropdownArrow')
+        };
+
+        // Auth State
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                const username = user.displayName || user.email.split('@')[0];
+                updateUIForUser(username);
+                await loadUserData(user.uid);
+                await loadPaymentMethods();
+                loadHistory();
+                setupRealtimeBalance(user.uid);
+            } else {
+                window.location.href = './login.html?redirect=' + encodeURIComponent(window.location.href);
+            }
+        });
+
+        function updateUIForUser(username) {
+            els.loading.classList.add('hidden');
+            els.profile.classList.remove('hidden');
+            
+            els.displayName.textContent = username;
+            els.userAvatar.textContent = username.charAt(0).toUpperCase();
+            els.dropdownName.textContent = username;
+            els.dropdownAvatar.textContent = username.charAt(0).toUpperCase();
+        }
+
+        // Profile Dropdown Functions
+        els.trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            isDropdownOpen = !isDropdownOpen;
+            
+            if (isDropdownOpen) {
+                els.dropdown.classList.add('active');
+                els.trigger.classList.add('active');
+                els.arrow.style.transform = 'rotate(180deg)';
+            } else {
+                closeDropdown();
+            }
+        });
+
+        function closeDropdown() {
+            isDropdownOpen = false;
+            els.dropdown.classList.remove('active');
+            els.trigger.classList.remove('active');
+            els.arrow.style.transform = 'rotate(0)';
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.profile-dropdown-container')) {
+                closeDropdown();
+            }
+        });
+
+        window.handleLogout = async function() {
+            try {
+                await signOut(auth);
+                if (unsubscribeBalance) unsubscribeBalance();
+                window.location.href = './index.html';
+            } catch (error) {
+                showToast('เกิดข้อผิดพลาด', 'error');
+            }
+        };
+
+        // Real-time Balance Listener
+        function setupRealtimeBalance(uid) {
+            const userRef = doc(db, "users", uid);
+            unsubscribeBalance = onSnapshot(userRef, (doc) => {
+                if (doc.exists()) {
+                    const data = doc.data();
+                    const balance = data.balance || 0;
+                    animateValue('currentBalance', balance);
+                    document.getElementById('userBalance').textContent = balance.toLocaleString();
+                    document.getElementById('dropdownBalance').textContent = balance.toLocaleString();
+                }
+            });
+        }
+
+        function animateValue(id, end) {
+            const obj = document.getElementById(id);
+            const start = parseInt(obj.textContent.replace(/[^0-9]/g, '')) || 0;
+            if (start === end) return;
+            
+            const duration = 1000;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (end - start) * easeProgress);
+                
+                obj.textContent = '฿' + current.toLocaleString();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        async function loadUserData(uid) {
+            try {
+                const docSnap = await getDoc(doc(db, "users", uid));
+                if (docSnap.exists()) {
+                    userData = docSnap.data();
+                } else {
+                    await setDoc(doc(db, "users", uid), {
+                        email: currentUser.email,
+                        balance: 0,
+                        createdAt: serverTimestamp(),
+                        updatedAt: serverTimestamp()
+                    });
+                    userData = { balance: 0 };
+                }
+                document.getElementById('currentBalance').textContent = '฿' + (userData.balance || 0).toLocaleString();
+            } catch (error) {
+                console.error("Error loading user data:", error);
+                showToast('เกิดข้อผิดพลาดในการโหลดข้อมูล', 'error');
+            }
+        }
+
+        // Load Payment Methods (Bank & TrueMoney)
+        async function loadPaymentMethods() {
+            const container = document.getElementById('paymentMethodsList');
+            const emptyState = document.getElementById('noPaymentConfig');
+            
+            try {
+                // โหลดจาก collection bank_accounts (สำหรับธนาคาร)
+                const bankQuery = query(collection(db, "bank_accounts"), where("isActive", "==", true));
+                const bankSnap = await getDocs(bankQuery);
+                
+                // โหลดจาก collection payment_methods (สำหรับ TrueMoney และธนาคารอื่นๆ ถ้ามี)
+                const methodQuery = query(collection(db, "payment_methods"), where("isActive", "==", true));
+                const methodSnap = await getDocs(methodQuery);
+                
+                paymentMethods = [];
+                
+                // เพิ่มธนาคาร
+                bankSnap.forEach(doc => {
+                    paymentMethods.push({ 
+                        id: doc.id, 
+                        ...doc.data(),
+                        type: 'bank'
+                    });
+                });
+                
+                // เพิ่มช่องทางอื่น (TrueMoney, etc.)
+                methodSnap.forEach(doc => {
+                    paymentMethods.push({ 
+                        id: doc.id, 
+                        ...doc.data()
+                    });
+                });
+                
+                if (paymentMethods.length === 0) {
+                    container.innerHTML = '';
+                    emptyState.classList.remove('hidden');
+                    updateSubmitButton();
+                    return;
+                }
+                
+                emptyState.classList.add('hidden');
+                renderPaymentMethods();
+                
+                // Auto select first
+                if (paymentMethods.length > 0) {
+                    selectPaymentMethod(paymentMethods[0]);
+                }
+                
+            } catch (error) {
+                console.error("Error loading payment methods:", error);
+                container.innerHTML = 
+                    '<div class="text-center py-4 text-red-400 text-sm bg-red-50 rounded-xl border border-red-100">ไม่สามารถโหลดข้อมูลช่องทางการชำระเงินได้</div>';
+            }
+        }
+
+        function renderPaymentMethods() {
+            const container = document.getElementById('paymentMethodsList');
+            
+            container.innerHTML = paymentMethods.map(method => {
+                const isBank = method.type === 'bank' || !method.type;
+                const isTrueMoney = method.type === 'truemoney';
+                
+                let icon, name, detail;
+                
+                if (isTrueMoney) {
+                    icon = '<div class="w-14 h-14 rounded-xl bg-[#0071BC] flex items-center justify-center text-white font-bold text-xl">T</div>';
+                    name = 'TrueMoney Wallet';
+                    detail = method.phoneNumber || '-';
+                } else {
+                    // Bank
+                    const bankColors = {
+                        'กสิกรไทย': '#138f2e',
+                        'กรุงเทพ': '#1e459c',
+                        'กรุงไทย': '#f4d03f',
+                        'ไทยพาณิชย์': '#6f2c91',
+                        'กรุงศรี': '#ffd700',
+                        'ทหารไทย': '#1e4db3',
+                        'ซีไอเอ็มบี': '#e31e24',
+                        'ยูโอบี': '#630031',
+                        'แลนด์ แอนด์ เฮาส์': '#0066b3',
+                        'ออมสิน': '#f57f20',
+                        'ธ.ก.ส.': '#1e4d2b'
+                    };
+                    
+                    const color = bankColors[method.bankName] || '#64748b';
+                    
+                    icon = `<div class="w-14 h-14 rounded-xl flex items-center justify-center text-white font-bold text-lg" style="background: ${color}">
+                        ${method.bankName ? method.bankName.charAt(0) : 'B'}
+                    </div>`;
+                    name = method.bankName || 'ธนาคาร';
+                    detail = `xxx-${method.accountNumber?.slice(-4) || 'xxxx'}`;
+                }
+                
+                return `
+                    <div class="payment-card ${selectedPaymentMethod?.id === method.id ? 'active' : ''}" 
+                         onclick="selectPaymentMethodById('${method.id}')" 
+                         style="cursor: pointer;">
+                        <div class="flex items-start gap-4">
+                            ${icon}
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="font-bold text-slate-800 text-lg">${name}</h3>
+                                        <p class="text-sm text-slate-500 mt-1">${isTrueMoney ? 'เบอร์' : 'เลขบัญชี'}: ${detail}</p>
+                                        ${method.accountName ? `<p class="text-sm text-slate-600 mt-1 font-medium">ชื่อ: ${method.accountName}</p>` : ''}
+                                    </div>
+                                    ${selectedPaymentMethod?.id === method.id ? 
+                                        '<div class="w-8 h-8 rounded-full bg-sky-100 flex items-center justify-center text-sky-600 flex-shrink-0"><i class="fa-solid fa-check"></i></div>' 
+                                        : '<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 flex-shrink-0"><i class="fa-solid fa-chevron-right text-sm"></i></div>'}
+                                </div>
+                                
+                                ${selectedPaymentMethod?.id === method.id ? `
+                                    <div class="mt-4 pt-4 border-t border-slate-100 flex gap-2">
+                                        ${isBank ? `
+                                            <button onclick="event.stopPropagation(); copyToClipboard('${method.accountNumber}')" class="copy-btn flex-1 justify-center">
+                                                <i class="fa-regular fa-copy"></i> คัดลอกเลขบัญชี
+                                            </button>
+                                        ` : `
+                                            <button onclick="event.stopPropagation(); copyToClipboard('${method.phoneNumber}')" class="copy-btn flex-1 justify-center">
+                                                <i class="fa-regular fa-copy"></i> คัดลอกเบอร์
+                                            </button>
+                                        `}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        window.selectPaymentMethodById = function(id) {
+            const method = paymentMethods.find(m => m.id === id);
+            if (method) selectPaymentMethod(method);
+        };
+
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+            renderPaymentMethods();
+            updateSubmitButton();
+            logActivity('select_payment_method', { 
+                methodId: method.id, 
+                type: method.type || 'bank',
+                name: method.bankName || method.name 
+            });
+        }
+
+        window.handleFileSelect = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            if (file.size > 5 * 1024 * 1024) {
+                showToast('ไฟล์ใหญ่เกินไป (สูงสุด 5MB)', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('previewImage').src = e.target.result;
+                document.getElementById('uploadPlaceholder').classList.add('hidden');
+                document.getElementById('uploadPreview').classList.remove('hidden');
+                document.getElementById('uploadArea').classList.add('has-file');
+                updateSubmitButton();
+            };
+            reader.readAsDataURL(file);
+            
+            logActivity('select_slip', { fileName: file.name, fileSize: file.size });
+        };
+
+        window.clearFile = function() {
+            document.getElementById('slipInput').value = '';
+            document.getElementById('uploadPlaceholder').classList.remove('hidden');
+            document.getElementById('uploadPreview').classList.add('hidden');
+            document.getElementById('uploadArea').classList.remove('has-file');
+            updateSubmitButton();
+        };
+
+        function updateSubmitButton() {
+            const btn = document.getElementById('submitBtn');
+            const hasFile = document.getElementById('slipInput').files.length > 0;
+            const hasPaymentMethod = selectedPaymentMethod !== null;
+            
+            btn.disabled = !(hasFile && hasPaymentMethod);
+            
+            if (hasPaymentMethod && hasFile) {
+                document.getElementById('btnText').textContent = 'แจ้งการโอนเงิน';
+            } else if (!hasPaymentMethod) {
+                document.getElementById('btnText').textContent = 'กรุณาเลือกช่องทางการโอน';
+            } else {
+                document.getElementById('btnText').textContent = 'แจ้งการโอนเงิน';
+            }
+        }
+
+        window.submitTopup = async function(event) {
+            event.preventDefault();
+            
+            const btn = document.getElementById('submitBtn');
+            const file = document.getElementById('slipInput').files[0];
+            const note = document.getElementById('transferNote').value;
+            
+            if (!file || !selectedPaymentMethod) return;
+            
+            btn.disabled = true;
+            btn.classList.add('loading');
+            document.getElementById('btnText').textContent = 'กำลังส่งข้อมูล...';
+            
+            try {
+                // 1. Upload slip
+                const slipRef = ref(storage, `slips/${currentUser.uid}/${Date.now()}_${file.name}`);
+                await uploadBytes(slipRef, file);
+                const slipUrl = await getDownloadURL(slipRef);
+                
+                // 2. Create request (ไม่มี amount และ transferTime แล้ว)
+                const requestData = {
+                    userId: currentUser.uid,
+                    userEmail: currentUser.email,
+                    userName: userData?.displayName || currentUser.email,
+                    paymentMethodId: selectedPaymentMethod.id,
+                    paymentMethodType: selectedPaymentMethod.type || 'bank',
+                    paymentMethodName: selectedPaymentMethod.bankName || selectedPaymentMethod.name || 'ไม่ระบุ',
+                    bankName: selectedPaymentMethod.bankName || null,
+                    accountNumber: selectedPaymentMethod.accountNumber || selectedPaymentMethod.phoneNumber || null,
+                    accountName: selectedPaymentMethod.accountName || null,
+                    slipUrl: slipUrl,
+                    note: note,
+                    status: 'pending',
+                    // ไม่มี amount และ transferTime แล้ว
+                    createdAt: serverTimestamp(),
+                    updatedAt: serverTimestamp()
+                };
+                
+                const requestRef = await addDoc(collection(db, "topup_requests"), requestData);
+                
+                // 3. Notify admin
+                await addDoc(collection(db, "admin_notifications"), {
+                    type: 'new_topup',
+                    requestId: requestRef.id,
+                    userId: currentUser.uid,
+                    userName: requestData.userName,
+                    paymentMethod: requestData.paymentMethodName,
+                    read: false,
+                    createdAt: serverTimestamp()
+                });
+                
+                // 4. Log activity
+                logActivity('submit_topup', {
+                    requestId: requestRef.id,
+                    paymentMethod: selectedPaymentMethod.id
+                });
+                
+                showToast('ส่งคำขอเติมเงินสำเร็จ! รอการตรวจสอบ', 'success');
+                
+                // Reset form
+                document.getElementById('topupForm').reset();
+                clearFile();
+                loadHistory();
+                
+            } catch (error) {
+                console.error("Error submitting topup:", error);
+                showToast('เกิดข้อผิดพลาด กรุณาลองใหม่', 'error');
+                logActivity('topup_error', { error: error.message });
+            } finally {
+                btn.disabled = false;
+                btn.classList.remove('loading');
+                updateSubmitButton();
+            }
+        };
+
+        async function logActivity(action, data = {}) {
+            try {
+                await addDoc(collection(db, "activity_logs"), {
+                    userId: currentUser?.uid || 'anonymous',
+                    email: currentUser?.email || '',
+                    action: action,
+                    data: data,
+                    page: 'topup',
+                    userAgent: navigator.userAgent,
+                    timestamp: serverTimestamp()
+                });
+            } catch (e) {
+                console.error("Logging error:", e);
+            }
+        }
+
+        window.loadHistory = async function() {
+            lastHistoryDoc = null;
+            document.getElementById('historyList').innerHTML = 
+                '<div class="flex items-center justify-center py-8 text-slate-400"><div class="animate-spin w-6 h-6 border-3 border-sky-200 border-t-sky-500 rounded-full mr-3"></div>กำลังโหลด...</div>';
+            
+            try {
+                let q = query(
+                    collection(db, "topup_requests"),
+                    where("userId", "==", currentUser.uid),
+                    orderBy("createdAt", "desc"),
+                    limit(10)
+                );
+                
+                const snapshot = await getDocs(q);
+                
+                if (snapshot.empty) {
+                    document.getElementById('historyList').innerHTML = 
+                        '<div class="text-center py-8 text-slate-400 bg-slate-50 rounded-xl border border-dashed border-slate-200"><i class="fa-solid fa-inbox text-3xl mb-2 text-slate-300"></i><p>ยังไม่มีประวัติการเติมเงิน</p></div>';
+                    document.getElementById('loadMoreContainer').classList.add('hidden');
+                    return;
+                }
+                
+                renderHistory(snapshot.docs);
+                lastHistoryDoc = snapshot.docs[snapshot.docs.length - 1];
+                
+                document.getElementById('loadMoreContainer').classList.toggle('hidden', snapshot.docs.length < 10);
+                
+            } catch (error) {
+                console.error("Error loading history:", error);
+                document.getElementById('historyList').innerHTML = 
+                    '<div class="text-center py-8 text-red-400 bg-red-50 rounded-xl border border-red-100"><i class="fa-solid fa-triangle-exclamation text-2xl mb-2"></i><p>เกิดข้อผิดพลาดในการโหลดข้อมูล</p></div>';
+            }
+        };
+
+        window.loadMoreHistory = async function() {
+            if (!lastHistoryDoc) return;
+            
+            try {
+                const q = query(
+                    collection(db, "topup_requests"),
+                    where("userId", "==", currentUser.uid),
+                    orderBy("createdAt", "desc"),
+                    startAfter(lastHistoryDoc),
+                    limit(10)
+                );
+                
+                const snapshot = await getDocs(q);
+                
+                if (!snapshot.empty) {
+                    renderHistory(snapshot.docs, true);
+                    lastHistoryDoc = snapshot.docs[snapshot.docs.length - 1];
+                    document.getElementById('loadMoreContainer').classList.toggle('hidden', snapshot.docs.length < 10);
+                } else {
+                    document.getElementById('loadMoreContainer').classList.add('hidden');
+                }
+            } catch (error) {
+                console.error("Error loading more:", error);
+            }
+        };
+
+        function renderHistory(docs, append = false) {
+            const html = docs.map(doc => {
+                const data = doc.data();
+                const date = data.createdAt?.toDate() || new Date();
+                const dateStr = date.toLocaleDateString('th-TH', { 
+                    year: 'numeric', month: 'short', day: 'numeric',
+                    hour: '2-digit', minute: '2-digit'
+                });
+                
+                const statusConfig = {
+                    'pending': { 
+                        class: 'bg-amber-100 text-amber-700', 
+                        text: 'รอตรวจสอบ',
+                        icon: 'fa-clock'
+                    },
+                    'approved': { 
+                        class: 'bg-emerald-100 text-emerald-700', 
+                        text: 'สำเร็จ',
+                        icon: 'fa-check'
+                    },
+                    'rejected': { 
+                        class: 'bg-red-100 text-red-700', 
+                        text: 'ถูกปฏิเสธ',
+                        icon: 'fa-xmark'
+                    }
+                };
+                
+                const status = statusConfig[data.status] || statusConfig['pending'];
+                
+                return `
+                    <div class="history-item border-l-4 ${data.status === 'pending' ? 'border-amber-400' : data.status === 'approved' ? 'border-emerald-400' : 'border-red-400'}">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600">
+                                    <i class="fa-solid ${data.paymentMethodType === 'truemoney' ? 'fa-wallet' : 'fa-building-columns'}"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-slate-800">${data.paymentMethodName || 'ไม่ระบุ'}</div>
+                                    <div class="text-sm text-slate-500">${dateStr}</div>
+                                </div>
+                            </div>
+                            <span class="status-badge ${status.class}">
+                                <i class="fa-solid ${status.icon} text-xs"></i>
+                                ${status.text}
+                            </span>
+                        </div>
+                        ${data.note ? `<div class="mt-2 text-sm text-slate-600 bg-slate-50 p-2 rounded-lg"><i class="fa-solid fa-note-sticky mr-1 text-slate-400"></i> ${data.note}</div>` : ''}
+                        ${data.slipUrl ? `
+                            <div class="mt-3">
+                                <a href="${data.slipUrl}" target="_blank" class="text-sm text-sky-600 hover:text-sky-700 font-medium flex items-center gap-2">
+                                    <i class="fa-solid fa-receipt"></i>
+                                    ดูหลักฐานการโอน
+                                </a>
+                            </div>
+                        ` : ''}
+                        ${data.rejectionReason ? `
+                            <div class="mt-2 p-3 bg-red-50 border border-red-100 rounded-lg text-red-600 text-sm">
+                                <i class="fa-solid fa-circle-exclamation mr-1"></i>
+                                <span class="font-semibold">เหตุผล:</span> ${data.rejectionReason}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+            
+            const container = document.getElementById('historyList');
+            if (append) {
+                container.insertAdjacentHTML('beforeend', html);
+            } else {
+                container.innerHTML = html;
+            }
+        }
+
+        window.refreshBalance = async function() {
+            if (!currentUser) return;
+            
+            const icon = document.getElementById('refreshIcon');
+            icon.classList.add('fa-spin');
+            
+            try {
+                await loadUserData(currentUser.uid);
+                showToast('อัพเดตยอดเงินแล้ว', 'success');
+                logActivity('refresh_balance', {});
+            } finally {
+                setTimeout(() => icon.classList.remove('fa-spin'), 1000);
+            }
+        };
+
+        window.copyToClipboard = function(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('คัดลอกแล้ว', 'success');
+            });
+        };
+
+        window.showToast = function(message, type) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast ' + type;
+            
+            const icons = { 
+                success: '<i class="fa-solid fa-circle-check text-emerald-500 text-xl"></i>', 
+                error: '<i class="fa-solid fa-circle-xmark text-red-500 text-xl"></i>', 
+                info: '<i class="fa-solid fa-circle-info text-sky-500 text-xl"></i>' 
+            };
+            
+            toast.innerHTML = `${icons[type]}<span class="font-medium text-slate-700">${message}</span>`;
+            
+            container.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        };
+
+        // Cleanup
+        window.addEventListener('beforeunload', () => {
+            if (unsubscribeBalance) unsubscribeBalance();
+        });
+    </script>
+</body>
+</html>

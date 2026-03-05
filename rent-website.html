@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="เช่าเว็บไซต์ - PanderX Rent Website">
+    <title>เช่าเว็บไซต์ | PanderX</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: #f0f9ff;
+            color: #1e293b;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .water-drop-bg {
+            position: fixed;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(129, 140, 248, 0.05) 100%);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .drop-1 { width: 600px; height: 600px; top: -200px; right: -200px; opacity: 0.6; }
+        .drop-2 { width: 500px; height: 500px; bottom: -150px; left: -100px; opacity: 0.4; }
+
+        .glass-panel-white {
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .glass-card-white {
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .navbar {
+            position: sticky;
+            top: 16px;
+            z-index: 50;
+            max-width: 1152px;
+            margin: 0 auto 2.5rem;
+            width: calc(100% - 2rem);
+        }
+
+        .profile-trigger {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px 6px 6px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .profile-trigger:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+
+        .avatar-small {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .profile-dropdown {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            width: 320px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.95);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 9999;
+            overflow: hidden;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .profile-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .dropdown-header {
+            padding: 24px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .avatar-large {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+        }
+
+        .user-details h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .user-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #10b981;
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .balance-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .balance-label {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .balance-amount {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            color: #0ea5e9;
+            font-size: 16px;
+        }
+
+        .diamond-icon {
+            width: 20px;
+            height: 20px;
+            color: #38bdf8;
+        }
+
+        .dropdown-menu {
+            padding: 12px;
+        }
+
+        .menu-group {
+            margin-bottom: 8px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.15s;
+            color: #334155;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .menu-item:hover {
+            background: #f1f5f9;
+            color: #0ea5e9;
+        }
+
+        .menu-icon {
+            width: 22px;
+            height: 22px;
+            color: #64748b;
+            flex-shrink: 0;
+        }
+
+        .menu-item:hover .menu-icon {
+            color: #0ea5e9;
+        }
+
+        .menu-divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 8px 12px;
+        }
+
+        .menu-item.logout {
+            color: #dc2626;
+            margin-top: 4px;
+        }
+
+        .menu-item.logout:hover {
+            background: #fef2f2;
+        }
+
+        .menu-item.logout .menu-icon {
+            color: #dc2626;
+        }
+
+        .toggle-container {
+            background: white;
+            border-radius: 50px;
+            padding: 4px;
+            display: inline-flex;
+            border: 1px solid #e2e8f0;
+        }
+
+        .toggle-btn {
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            white-space: nowrap;
+        }
+
+        .toggle-btn.active {
+            color: white;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25);
+        }
+
+        .subdomain-input-group {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .subdomain-input-group:focus-within {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+        }
+
+        .subdomain-input {
+            flex: 1;
+            border: none;
+            padding: 14px 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            outline: none;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        .subdomain-suffix {
+            padding: 14px 16px;
+            background: #f8fafc;
+            color: #64748b;
+            font-weight: 600;
+            border-left: 1px solid #e2e8f0;
+            font-size: 14px;
+        }
+
+        .duration-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 640px) {
+            .duration-grid { grid-template-columns: 1fr; }
+        }
+
+        .duration-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px 12px 16px;
+            cursor: pointer;
+            transition: all 0.15s;
+            position: relative;
+            text-align: center;
+        }
+
+        .duration-card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .duration-card.selected {
+            border-color: #38bdf8;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.05) 0%, rgba(129, 140, 248, 0.05) 100%);
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        .check-icon {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .duration-card.selected .check-icon { opacity: 1; }
+
+        .duration-title { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+        .duration-price { font-size: 1rem; color: #0ea5e9; font-weight: 700; }
+        .duration-original { font-size: 0.75rem; color: #94a3b8; text-decoration: line-through; height: 16px; }
+
+        .summary-box {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            font-family: 'Prompt', sans-serif;
+            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35); }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .btn-primary.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spinner 0.8s linear infinite;
+        }
+
+        @keyframes spinner {
+            to { transform: rotate(360deg); }
+        }
+
+        .status-available { color: #10b981; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 4px; margin-top: 8px; }
+        .status-unavailable { color: #ef4444; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 4px; margin-top: 8px; }
+        .status-loading { color: #f59e0b; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 4px; margin-top: 8px; }
+
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+        }
+
+        .toast {
+            padding: 12px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            border-left: 3px solid;
+            pointer-events: all;
+            min-width: 280px;
+        }
+
+        .toast.show { transform: translateX(0); }
+        .toast.success { border-left-color: #10b981; }
+        .toast.error { border-left-color: #ef4444; }
+        .toast.info { border-left-color: #38bdf8; }
+
+        .insufficient-balance {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .insufficient-balance.show { display: block; }
+
+        @media (max-width: 768px) {
+            .profile-dropdown {
+                width: calc(100vw - 40px);
+                right: -10px;
+                max-width: 320px;
+            }
+            .water-drop-bg { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="water-drop-bg drop-1"></div>
+    <div class="water-drop-bg drop-2"></div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar glass-panel-white px-4 md:px-6 py-3 flex justify-between items-center">
+        <a href="./index.html" class="text-2xl font-bold text-sky-600">PanderX</a>
+        
+        <div id="authSection" style="position: relative;">
+            <div id="userProfile" class="hidden" style="position: relative;">
+                <!-- Profile Trigger -->
+                <button class="profile-trigger" id="profileTrigger" onclick="toggleDropdown(event)">
+                    <div class="avatar-small" id="userAvatar">X</div>
+                    <svg width="16" height="16" class="text-slate-400" id="dropdownArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="dropdown-header">
+                        <div class="user-info">
+                            <div class="avatar-large" id="dropdownAvatar">X</div>
+                            <div class="user-details">
+                                <h3 id="dropdownName">x3dswift</h3>
+                                <div class="user-status">
+                                    <span class="status-dot"></span>
+                                    <span>ออนไลน์</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="balance-section">
+                            <span class="balance-label">ยอดคงเหลือ</span>
+                            <div class="balance-amount">
+                                <svg class="diamond-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2L2 9l10 13 10-13-10-7z"/>
+                                </svg>
+                                <span id="userBalance">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown-menu">
+                        <div class="menu-group">
+                            <div class="menu-item" onclick="goToProfile()">
+                                <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                </svg>
+                                <span>โปรไฟล์ของฉัน</span>
+                            </div>
+                            
+                            <div class="menu-item" onclick="goToOrders()">
+                                <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                </svg>
+                                <span>ประวัติการสั่งซื้อ</span>
+                            </div>
+                            
+                            <div class="menu-item" onclick="goToTopup()">
+                                <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                </svg>
+                                <span>เติมเงิน</span>
+                            </div>
+                            
+                            <div class="menu-item" onclick="goToSettings()">
+                                <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                <span>ตั้งค่าบัญชี</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-divider"></div>
+
+                        <div class="menu-item logout" onclick="handleLogout()">
+                            <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                            </svg>
+                            <span>ออกจากระบบ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 pb-20">
+        
+        <button onclick="history.back()" class="mb-6 flex items-center gap-2 text-slate-500 hover:text-sky-600 transition font-medium text-sm">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            กลับไปเลือกแพ็กเกจ
+        </button>
+
+        <!-- Package Info -->
+        <div class="glass-card-white p-6 mb-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                <div>
+                    <div class="inline-block px-3 py-1 rounded-full bg-sky-100 text-sky-700 text-xs font-bold mb-2">แพ็กเกจยอดนิยม</div>
+                    <h1 class="text-2xl font-bold text-slate-800" id="packageName">Singularity V1</h1>
+                    <p class="text-slate-500 text-sm mt-1">ระบบร้านค้าออนไลน์ครบวงจร</p>
+                </div>
+                <div class="text-left md:text-right">
+                    <div class="text-3xl font-bold text-sky-600" id="basePrice">฿139</div>
+                    <div class="text-xs text-slate-400">/ 30 วัน</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="flex items-center gap-2 text-sm text-slate-600">
+                    <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    SSL ฟรี
+                </div>
+                <div class="flex items-center gap-2 text-sm text-slate-600">
+                    <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    ระบบชำระเงิน
+                </div>
+                <div class="flex items-center gap-2 text-sm text-slate-600">
+                    <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    รองรับมือถือ
+                </div>
+                <div class="flex items-center gap-2 text-sm text-slate-600">
+                    <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    แก้ไขได้เอง
+                </div>
+            </div>
+        </div>
+
+        <!-- Toggle -->
+        <div class="text-center mb-6">
+            <div class="toggle-container">
+                <button class="toggle-btn active" id="btnCreate" onclick="setMode('create')">สร้างเว็บไซต์ใหม่</button>
+                <button class="toggle-btn" id="btnRenew" onclick="setMode('renew')">ต่ออายุ</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Form -->
+            <div class="lg:col-span-2 space-y-4">
+                
+                <!-- Subdomain -->
+                <div class="glass-card-white p-5">
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
+                        <span id="labelSubdomain">ชื่อเว็บไซต์</span> <span class="text-red-500">*</span>
+                    </label>
+                    
+                    <div class="subdomain-input-group">
+                        <input type="text" id="subdomainInput" class="subdomain-input" placeholder="yourname" autocomplete="off" spellcheck="false">
+                        <div class="subdomain-suffix">.panderx.xyz</div>
+                    </div>
+                    
+                    <div id="subdomainStatus"></div>
+                    <p class="text-xs text-slate-400 mt-2">ใช้ a-z, 0-9 และขีดกลาง (-) เท่านั้น</p>
+                </div>
+
+                <!-- Duration -->
+                <div class="glass-card-white p-5">
+                    <label class="block text-sm font-semibold text-slate-700 mb-4">เลือกระยะเวลา</label>
+                    
+                    <div class="duration-grid">
+                        <div class="duration-card selected" id="dur30" onclick="selectDuration(30, 0)">
+                            <div class="check-icon">
+                                <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <div class="duration-title">30 วัน</div>
+                            <div class="duration-price" id="price30">฿139</div>
+                            <div class="duration-original"></div>
+                        </div>
+
+                        <div class="duration-card" id="dur90" onclick="selectDuration(90, 10)">
+                            <div class="discount-badge">ประหยัด 10%</div>
+                            <div class="check-icon">
+                                <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <div class="duration-title">90 วัน</div>
+                            <div class="duration-price" id="price90">฿375</div>
+                            <div class="duration-original">฿417</div>
+                        </div>
+
+                        <div class="duration-card" id="dur365" onclick="selectDuration(365, 20)">
+                            <div class="discount-badge">ประหยัด 20%</div>
+                            <div class="check-icon">
+                                <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <div class="duration-title">1 ปี</div>
+                            <div class="duration-price" id="price365">฿1,335</div>
+                            <div class="duration-original">฿1,668</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SSL -->
+                <div class="glass-card-white p-4 flex items-center gap-3">
+                    <input type="checkbox" checked disabled class="w-5 h-5 text-sky-500 rounded border-gray-300">
+                    <div class="flex-1">
+                        <div class="font-semibold text-slate-700 text-sm">SSL Certificate (HTTPS)</div>
+                        <div class="text-xs text-slate-500">ฟรี! ความปลอดภัยระดับสูง</div>
+                    </div>
+                    <span class="text-emerald-600 font-bold text-sm bg-emerald-50 px-3 py-1 rounded-full">ฟรี</span>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-20 space-y-4">
+                    <div class="summary-box">
+                        <h3 class="font-bold text-slate-800 mb-4">สรุปรายการ</h3>
+                        
+                        <div class="space-y-2 mb-4 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">แพ็กเกจ</span>
+                                <span class="font-semibold" id="sumPackage">Singularity V1</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">ระยะเวลา</span>
+                                <span class="font-semibold" id="sumDuration">30 วัน</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">โดเมน</span>
+                                <span class="font-semibold truncate max-w-[120px]" id="sumDomain">-</span>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-200 pt-4 mb-4">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-slate-500 text-sm">ราคารวม</span>
+                                <span class="text-2xl font-bold text-sky-600" id="totalPrice">฿139</span>
+                            </div>
+                            <div class="flex justify-between text-sm hidden" id="discountRow">
+                                <span class="text-emerald-600">ส่วนลด</span>
+                                <span class="text-emerald-600 font-semibold" id="discountAmount">-฿0</span>
+                            </div>
+                        </div>
+
+                        <div class="insufficient-balance" id="insufficientBalance">
+                            ยอดเงินไม่เพียงพอ <a href="./topup.html" class="underline font-semibold">เติมเงินเลย</a>
+                        </div>
+
+                        <button class="btn-primary" id="btnSubmit" onclick="submitOrder()" disabled>
+                            ยืนยันการเช่า
+                        </button>
+                    </div>
+
+                    <div class="glass-card-white p-4 text-center text-sm">
+                        <div class="w-10 h-10 mx-auto bg-sky-100 rounded-full flex items-center justify-center mb-2">
+                            <svg width="20" height="20" class="text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </div>
+                        <div class="font-semibold text-slate-700 mb-1">ต้องการความช่วยเหลือ?</div>
+                        <div class="text-slate-500 text-xs mb-2">ติดต่อ 24 ชม.</div>
+                        <button onclick="showToast('กำลังเปิดแชท...', 'info')" class="text-sky-600 font-semibold hover:underline">แชทกับเรา</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center text-slate-400 text-sm py-8">
+        <p>&copy; 2026 PanderX</p>
+    </footer>
+
+    <script type="module">
+        import { auth, db } from './firebase-config.js';
+        import { 
+            onAuthStateChanged, 
+            signOut 
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { 
+            doc, 
+            getDoc, 
+            setDoc, 
+            updateDoc, 
+            serverTimestamp, 
+            runTransaction,
+            collection,
+            query,
+            where,
+            getDocs 
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        let currentUser = null;
+        let currentUserData = null;
+        let currentMode = 'create';
+        let selectedDuration = 30;
+        let basePrice = 139;
+        let discountPercent = 0;
+        let debounceTimer;
+        let isSubdomainAvailable = false;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const packageName = urlParams.get('package') || 'Singularity V1';
+        const packagePrice = parseInt(urlParams.get('price')) || 139;
+        const packageId = urlParams.get('id') || 'singularity-v1';
+        
+        document.getElementById('packageName').textContent = packageName;
+        document.getElementById('basePrice').textContent = '฿' + packagePrice;
+        document.getElementById('sumPackage').textContent = packageName;
+        basePrice = packagePrice;
+        
+        updatePrices();
+
+        // Auth State Listener
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                await loadUserData(user.uid);
+            } else {
+                window.location.href = './login.html?redirect=' + encodeURIComponent(window.location.href);
+            }
+        });
+
+        // โหลดข้อมูลผู้ใช้รวมถึงยอดเงิน
+        async function loadUserData(uid) {
+            try {
+                const userDoc = await getDoc(doc(db, "users", uid));
+                if (userDoc.exists()) {
+                    currentUserData = userDoc.data();
+                    const username = currentUserData.displayName || currentUser.email.split('@')[0];
+                    const balance = currentUserData.balance || 0;
+                    
+                    document.getElementById('dropdownName').textContent = username;
+                    document.getElementById('userBalance').textContent = balance.toLocaleString();
+                    const initial = username.charAt(0).toUpperCase();
+                    document.getElementById('userAvatar').textContent = initial;
+                    document.getElementById('dropdownAvatar').textContent = initial;
+                    document.getElementById('userProfile').classList.remove('hidden');
+                    
+                    validateBalance();
+                } else {
+                    // สร้างเอกสารผู้ใช้ถ้ายังไม่มี
+                    await setDoc(doc(db, "users", uid), {
+                        displayName: currentUser.displayName || currentUser.email.split('@')[0],
+                        email: currentUser.email,
+                        balance: 0,
+                        createdAt: serverTimestamp()
+                    });
+                    currentUserData = { balance: 0 };
+                }
+            } catch (error) {
+                console.error("Error loading user data:", error);
+                showToast('เกิดข้อผิดพลาดในการโหลดข้อมูล', 'error');
+            }
+        }
+
+        window.toggleDropdown = function(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('profileDropdown');
+            const arrow = document.getElementById('dropdownArrow');
+            const isOpen = dropdown.classList.contains('active');
+            
+            if (isOpen) {
+                dropdown.classList.remove('active');
+                arrow.style.transform = 'rotate(0)';
+            } else {
+                dropdown.classList.add('active');
+                arrow.style.transform = 'rotate(180deg)';
+            }
+        };
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#authSection')) {
+                document.getElementById('profileDropdown').classList.remove('active');
+                document.getElementById('dropdownArrow').style.transform = 'rotate(0)';
+            }
+        });
+
+        window.goToProfile = () => {
+            showToast('ไปที่โปรไฟล์...', 'info');
+            setTimeout(() => window.location.href = './profile.html', 300);
+        };
+        
+        window.goToOrders = () => {
+            showToast('ไปที่ประวัติการสั่งซื้อ...', 'info');
+            setTimeout(() => window.location.href = './orders.html', 300);
+        };
+        
+        window.goToTopup = () => {
+            showToast('ไปที่หน้าเติมเงิน...', 'info');
+            setTimeout(() => window.location.href = './topup.html', 300);
+        };
+        
+        window.goToSettings = () => {
+            showToast('ไปที่ตั้งค่า...', 'info');
+            setTimeout(() => window.location.href = './settings.html', 300);
+        };
+
+        window.handleLogout = async () => {
+            try {
+                await signOut(auth);
+                window.location.href = './index.html';
+            } catch (error) {
+                showToast('เกิดข้อผิดพลาด', 'error');
+            }
+        };
+
+        const subdomainInput = document.getElementById('subdomainInput');
+        subdomainInput.addEventListener('input', (e) => {
+            clearTimeout(debounceTimer);
+            const value = e.target.value.toLowerCase();
+            e.target.value = value;
+            debounceTimer = setTimeout(() => checkSubdomain(value), 500);
+        });
+
+        window.setMode = function(mode) {
+            currentMode = mode;
+            document.getElementById('btnCreate').classList.toggle('active', mode === 'create');
+            document.getElementById('btnRenew').classList.toggle('active', mode === 'renew');
+            document.getElementById('labelSubdomain').textContent = mode === 'create' ? 'ชื่อเว็บไซต์' : 'ชื่อเว็บไซต์ที่ต้องการต่ออายุ';
+            subdomainInput.placeholder = mode === 'create' ? 'yourname' : 'your-site';
+            checkSubdomain(subdomainInput.value);
+        };
+
+        // ตรวจสอบ Subdomain ผ่าน Firebase
+        window.checkSubdomain = async function(value) {
+            const statusDiv = document.getElementById('subdomainStatus');
+            const sumDomain = document.getElementById('sumDomain');
+            const btn = document.getElementById('btnSubmit');
+            
+            isSubdomainAvailable = false;
+            
+            if (!value || value.length < 3) {
+                statusDiv.innerHTML = '';
+                sumDomain.textContent = '-';
+                btn.disabled = true;
+                return;
+            }
+            
+            const isValid = /^[a-z0-9-]+$/.test(value) && !value.startsWith('-') && !value.endsWith('-');
+            
+            if (!isValid) {
+                statusDiv.innerHTML = '<div class="status-unavailable">⚠ ใช้ a-z, 0-9, - เท่านั้น</div>';
+                sumDomain.textContent = '-';
+                btn.disabled = true;
+                return;
+            }
+            
+            // ตรวจสอบคำสงวน
+            const reserved = ['admin', 'test', 'demo', 'www', 'panderx', 'api', 'cdn', 'mail', 'ftp', 'localhost'];
+            if (reserved.includes(value)) {
+                statusDiv.innerHTML = '<div class="status-unavailable">✕ ชื่อนี้สงวนไว้ ไม่สามารถใช้ได้</div>';
+                sumDomain.textContent = '-';
+                btn.disabled = true;
+                return;
+            }
+            
+            sumDomain.textContent = value + '.panderx.xyz';
+            statusDiv.innerHTML = '<div class="status-loading">⏳ กำลังตรวจสอบ...</div>';
+            
+            try {
+                // ตรวจสอบจาก Firestore ว่ามี subdomain นี้อยู่แล้วหรือไม่
+                const websiteRef = doc(db, "websites", value);
+                const websiteDoc = await getDoc(websiteRef);
+                
+                const exists = websiteDoc.exists();
+                
+                if (currentMode === 'create') {
+                    if (exists) {
+                        statusDiv.innerHTML = '<div class="status-unavailable">✕ ชื่อนี้ถูกใช้แล้ว</div>';
+                        isSubdomainAvailable = false;
+                        btn.disabled = true;
+                    } else {
+                        statusDiv.innerHTML = '<div class="status-available">✓ พร้อมใช้งาน</div>';
+                        isSubdomainAvailable = true;
+                        validateBalance();
+                    }
+                } else {
+                    // โหมดต่ออายุ - ต้องเป็นเจ้าของเว็บนี้
+                    if (!exists) {
+                        statusDiv.innerHTML = '<div class="status-unavailable">✕ ไม่พบเว็บไซต์นี้</div>';
+                        isSubdomainAvailable = false;
+                        btn.disabled = true;
+                    } else {
+                        const data = websiteDoc.data();
+                        if (data.ownerId !== currentUser.uid) {
+                            statusDiv.innerHTML = '<div class="status-unavailable">✕ คุณไม่ใช่เจ้าของเว็บไซต์นี้</div>';
+                            isSubdomainAvailable = false;
+                            btn.disabled = true;
+                        } else {
+                            statusDiv.innerHTML = '<div class="status-available">✓ พบเว็บไซต์</div>';
+                            isSubdomainAvailable = true;
+                            validateBalance();
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error("Error checking subdomain:", error);
+                statusDiv.innerHTML = '<div class="status-unavailable">⚠ ตรวจสอบไม่สำเร็จ</div>';
+                btn.disabled = true;
+            }
+        };
+
+        window.selectDuration = function(days, discount) {
+            selectedDuration = days;
+            discountPercent = discount;
+            
+            [30, 90, 365].forEach(d => {
+                document.getElementById('dur' + d).classList.toggle('selected', d === days);
+            });
+            
+            document.getElementById('sumDuration').textContent = days === 365 ? '1 ปี' : days + ' วัน';
+            calculateTotal();
+            validateBalance();
+        };
+
+        function calculateTotal() {
+            const multiplier = selectedDuration / 30;
+            const subtotal = basePrice * multiplier;
+            const discount = subtotal * (discountPercent / 100);
+            const total = subtotal - discount;
+            
+            document.getElementById('totalPrice').textContent = '฿' + Math.floor(total).toLocaleString();
+            
+            const discountRow = document.getElementById('discountRow');
+            if (discount > 0) {
+                discountRow.classList.remove('hidden');
+                discountRow.classList.add('flex');
+                document.getElementById('discountAmount').textContent = '-฿' + Math.floor(discount).toLocaleString();
+            } else {
+                discountRow.classList.add('hidden');
+                discountRow.classList.remove('flex');
+            }
+            
+            return Math.floor(total);
+        }
+
+        function updatePrices() {
+            document.getElementById('price30').textContent = '฿' + basePrice;
+            document.getElementById('price90').textContent = '฿' + Math.floor(basePrice * 3 * 0.9);
+            document.getElementById('price365').textContent = '฿' + Math.floor(basePrice * 12 * 0.8);
+            calculateTotal();
+        }
+
+        // ตรวจสอบยอดเงิน
+        function validateBalance() {
+            const btn = document.getElementById('btnSubmit');
+            const total = calculateTotal();
+            const balance = currentUserData?.balance || 0;
+            const insufficientDiv = document.getElementById('insufficientBalance');
+            
+            if (!isSubdomainAvailable) {
+                btn.disabled = true;
+                return;
+            }
+            
+            if (balance < total) {
+                insufficientDiv.classList.add('show');
+                btn.disabled = true;
+            } else {
+                insufficientDiv.classList.remove('show');
+                btn.disabled = false;
+            }
+        }
+
+        // ส่งคำสั่งซื้อไปยัง Firebase
+        window.submitOrder = async function() {
+            const btn = document.getElementById('btnSubmit');
+            const subdomain = subdomainInput.value.toLowerCase().trim();
+            const total = calculateTotal();
+            
+            if (!subdomain || btn.disabled || !currentUser) return;
+            
+            btn.disabled = true;
+            btn.classList.add('loading');
+            btn.textContent = '';
+            
+            try {
+                const orderId = `ORD${Date.now()}${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
+                const now = new Date();
+                const expireDate = new Date(now);
+                expireDate.setDate(expireDate.getDate() + selectedDuration);
+                
+                // ใช้ Transaction เพื่อความปลอดภัย
+                await runTransaction(db, async (transaction) => {
+                    // 1. ตรวจสอบยอดเงินล่าสุด
+                    const userRef = doc(db, "users", currentUser.uid);
+                    const userDoc = await transaction.get(userRef);
+                    
+                    if (!userDoc.exists()) {
+                        throw new Error("User not found");
+                    }
+                    
+                    const userData = userDoc.data();
+                    const currentBalance = userData.balance || 0;
+                    
+                    if (currentBalance < total) {
+                        throw new Error("Insufficient balance");
+                    }
+                    
+                    // 2. ตรวจสอบ subdomain อีกครั้ง
+                    const websiteRef = doc(db, "websites", subdomain);
+                    const websiteDoc = await transaction.get(websiteRef);
+                    
+                    if (currentMode === 'create' && websiteDoc.exists()) {
+                        throw new Error("Subdomain already exists");
+                    }
+                    
+                    // 3. หักเงิน
+                    transaction.update(userRef, {
+                        balance: currentBalance - total,
+                        updatedAt: serverTimestamp()
+                    });
+                    
+                    // 4. สร้าง/อัพเดตข้อมูลเว็บไซต์
+                    if (currentMode === 'create') {
+                        transaction.set(websiteRef, {
+                            subdomain: subdomain,
+                            domain: `${subdomain}.panderx.xyz`,
+                            packageId: packageId,
+                            packageName: packageName,
+                            ownerId: currentUser.uid,
+                            ownerEmail: currentUser.email,
+                            status: 'active',
+                            createdAt: serverTimestamp(),
+                            expiresAt: expireDate,
+                            lastRenewal: serverTimestamp(),
+                            sslEnabled: true,
+                            settings: {
+                                theme: 'default',
+                                language: 'th'
+                            }
+                        });
+                    } else {
+                        // ต่ออายุ
+                        const currentExpiry = websiteDoc.data().expiresAt?.toDate() || now;
+                        const newExpiry = currentExpiry > now ? new Date(currentExpiry) : now;
+                        newExpiry.setDate(newExpiry.getDate() + selectedDuration);
+                        
+                        transaction.update(websiteRef, {
+                            expiresAt: newExpiry,
+                            lastRenewal: serverTimestamp(),
+                            status: 'active',
+                            updatedAt: serverTimestamp()
+                        });
+                    }
+                    
+                    // 5. บันทึกประวัติการสั่งซื้อ
+                    const orderRef = doc(db, "orders", orderId);
+                    transaction.set(orderRef, {
+                        orderId: orderId,
+                        userId: currentUser.uid,
+                        userEmail: currentUser.email,
+                        type: currentMode, // 'create' หรือ 'renew'
+                        subdomain: subdomain,
+                        domain: `${subdomain}.panderx.xyz`,
+                        packageId: packageId,
+                        packageName: packageName,
+                        duration: selectedDuration,
+                        basePrice: basePrice,
+                        discountPercent: discountPercent,
+                        totalAmount: total,
+                        status: 'completed',
+                        createdAt: serverTimestamp(),
+                        completedAt: serverTimestamp()
+                    });
+                    
+                    // 6. บันทึกประวัติการเงิน (Transaction Log)
+                    const transactionRef = doc(collection(db, "transactions"));
+                    transaction.set(transactionRef, {
+                        userId: currentUser.uid,
+                        type: 'debit',
+                        amount: total,
+                        balanceAfter: currentBalance - total,
+                        description: `${currentMode === 'create' ? 'เช่า' : 'ต่ออายุ'}เว็บไซต์ ${subdomain}`,
+                        orderId: orderId,
+                        createdAt: serverTimestamp()
+                    });
+                });
+                
+                // อัพเดตยอดเงินใน UI
+                currentUserData.balance -= total;
+                document.getElementById('userBalance').textContent = currentUserData.balance.toLocaleString();
+                
+                showToast(currentMode === 'create' ? 'สร้างเว็บไซต์สำเร็จ!' : 'ต่ออายุสำเร็จ!', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = `./dashboard.html?site=${encodeURIComponent(subdomain)}&new=true`;
+                }, 1500);
+                
+            } catch (error) {
+                console.error("Transaction failed:", error);
+                
+                let errorMsg = 'เกิดข้อผิดพลาด กรุณาลองใหม่';
+                if (error.message === "Insufficient balance") {
+                    errorMsg = 'ยอดเงินไม่เพียงพอ';
+                    validateBalance();
+                } else if (error.message === "Subdomain already exists") {
+                    errorMsg = 'ชื่อเว็บไซต์นี้ถูกใช้แล้ว';
+                    checkSubdomain(subdomain);
+                }
+                
+                showToast(errorMsg, 'error');
+                btn.disabled = false;
+                btn.classList.remove('loading');
+                btn.textContent = 'ยืนยันการเช่า';
+            }
+        };
+
+        window.showToast = function(message, type) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast ' + type;
+            
+            const icons = { success: '✓', error: '✕', info: 'ℹ' };
+            toast.innerHTML = `<span class="text-lg">${icons[type]}</span><span class="font-medium text-slate-700">${message}</span>`;
+            
+            container.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        };
+    </script>
+</body>
+</html>
