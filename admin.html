@@ -623,7 +623,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.75rem;
             box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
@@ -817,6 +817,319 @@
             font-weight: bold;
             text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
+
+        /* Order Type Badges */
+        .order-type-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .order-type-badge.rent {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+        }
+
+        .order-type-badge.product {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+        }
+
+        .order-type-badge.service {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .order-type-badge.create {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+        }
+
+        .order-type-badge.renew {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+        }
+
+        /* Admin Review Status */
+        .review-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .review-badge.pending_review {
+            background: #fef3c7;
+            color: #b45309;
+            border: 1px solid #fcd34d;
+            animation: pulse-badge 2s infinite;
+        }
+
+        .review-badge.approved {
+            background: #d1fae5;
+            color: #059669;
+            border: 1px solid #6ee7b7;
+        }
+
+        .review-badge.rejected {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fca5a5;
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+            50% { box-shadow: 0 0 0 4px rgba(245, 158, 11, 0); }
+        }
+
+        /* Website Order Detail Modal */
+        .website-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .detail-field {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .detail-field label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .detail-field .value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1e293b;
+            word-break: break-all;
+        }
+
+        .detail-field.full-width {
+            grid-column: span 2;
+        }
+
+        .website-order-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .website-order-card:hover {
+            border-color: #0ea5e9;
+            box-shadow: 0 8px 24px -8px rgba(14, 165, 233, 0.2);
+        }
+
+        /* Expiry Date Warning */
+        .expiry-warning {
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .expiry-ok {
+            color: #059669;
+        }
+
+        .expiry-soon {
+            color: #d97706;
+        }
+
+        /* ── CSS Variables for Live Theme ── */
+        :root {
+            --color-primary: #0ea5e9;
+            --color-secondary: #6366f1;
+            --color-accent: #f59e0b;
+            --color-bg: #f0f9ff;
+            --color-surface: #ffffff;
+            --color-text: #1e293b;
+            --color-text-muted: #64748b;
+            --color-header-bg: #ffffff;
+            --color-footer-bg: #f8fafc;
+            --site-name: 'PanderX';
+        }
+
+        /* ── Collapsible Nav Group ── */
+        .nav-group-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .nav-group-header:hover {
+            background: rgba(14, 165, 233, 0.06);
+            color: #0ea5e9;
+        }
+
+        .nav-group-header .chevron {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.65rem;
+        }
+
+        .nav-group-header.collapsed .chevron {
+            transform: rotate(-90deg);
+        }
+
+        .nav-group-body {
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 500px;
+        }
+
+        .nav-group-body.collapsed {
+            max-height: 0;
+        }
+
+        .nav-group-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        /* ── Settings Tabs ── */
+        .settings-tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.25s;
+            border: 2px solid transparent;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+        }
+
+        .settings-tab-btn:hover {
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        .settings-tab-btn.active {
+            background: linear-gradient(135deg, rgba(14,165,233,0.08) 0%, rgba(99,102,241,0.08) 100%);
+            color: #0ea5e9;
+            border-color: rgba(14,165,233,0.25);
+        }
+
+        .settings-tab-btn .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .settings-pane {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .settings-pane.active {
+            display: block;
+        }
+
+        /* ── Color Swatch ── */
+        .color-swatch-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: #f8fafc;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+
+        .color-swatch-row:hover {
+            border-color: #cbd5e1;
+        }
+
+        .color-swatch-row input[type="color"] {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
+            padding: 2px;
+            flex-shrink: 0;
+        }
+
+        .theme-preview-bar {
+            height: 8px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            transition: all 0.5s;
+        }
+
+        /* SEO tag pill */
+        .seo-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #e0f2fe, #ddd6fe);
+            color: #0369a1;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .seo-tag:hover {
+            transform: scale(1.05);
+        }
+
+        .seo-tag.selected {
+            background: linear-gradient(135deg, #0ea5e9, #6366f1);
+            color: white;
+        }
+
+        .seo-tag .remove-tag {
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.15);
+            font-size: 0.65rem;
+        }
     </style>
 </head>
 <body class="antialiased text-slate-800">
@@ -917,69 +1230,83 @@
                 </button>
             </div>
 
-            <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
-                <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 px-4 mt-2">เมนูหลัก</div>
-                
-                <a href="#" class="nav-item active flex items-center gap-4 p-4 text-slate-600 hover:text-slate-800 font-medium" onclick="switchTab('dashboard', this); return false;" data-perm="view_dashboard">
-                    <i class="fa-solid fa-chart-pie w-5 text-center text-lg"></i>
-                    <span>ภาพรวมระบบ</span>
-                </a>
-                
-                <a href="#" class="nav-item flex items-center gap-4 p-4 text-slate-600 hover:text-slate-800 font-medium" onclick="switchTab('users', this); return false;" data-perm="manage_users">
-                    <i class="fa-solid fa-users w-5 text-center text-lg"></i>
-                    <span>จัดการผู้ใช้</span>
-                </a>
+            <nav class="flex-1 p-4 space-y-1 overflow-y-auto" id="sidebarNav">
 
-                <a href="#" class="nav-item flex items-center gap-4 p-4 text-slate-600 hover:text-slate-800 font-medium" onclick="switchTab('orders', this); return false;" data-perm="manage_orders">
-                    <i class="fa-solid fa-shopping-cart w-5 text-center text-lg"></i>
-                    <span>คำสั่งซื้อ</span>
-                </a>
-                
-                <a href="#" class="nav-item flex items-center gap-4 p-4 text-slate-600 hover:text-slate-800 font-medium relative" onclick="switchTab('topup', this); return false;" data-perm="manage_topup">
-                    <i class="fa-solid fa-money-bill-transfer w-5 text-center text-lg"></i>
-                    <span>จัดการเติมเงิน</span>
-                    <span id="topupBadge" class="hidden absolute right-3 top-1/2 -translate-y-1/2 bg-gradient-to-r from-red-500 to-rose-500 text-white text-xs px-2.5 py-1 rounded-full font-bold shadow-lg shadow-red-200">0</span>
-                </a>
+                <!-- ── หน้าหลัก ── -->
+                <div class="nav-group-header" onclick="toggleNavGroup('group-main', this)">
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-house-chimney text-sky-400"></i> หน้าหลัก</div>
+                    <i class="fa-solid fa-chevron-down chevron text-slate-400"></i>
+                </div>
+                <div class="nav-group-body pl-1" id="group-main">
+                    <a href="#" class="nav-item active flex items-center gap-4 p-3.5 text-slate-600 font-medium" onclick="switchTab('dashboard', this); return false;" data-perm="view_dashboard">
+                        <i class="fa-solid fa-chart-pie w-5 text-center text-lg"></i><span>ภาพรวมระบบ</span>
+                    </a>
+                    <a href="#" class="nav-item flex items-center gap-4 p-3.5 text-slate-600 font-medium relative" onclick="switchTab('orders', this); return false;" data-perm="manage_orders">
+                        <i class="fa-solid fa-shopping-cart w-5 text-center text-lg"></i><span>คำสั่งซื้อ</span>
+                        <span id="ordersBadge" class="hidden absolute right-3 top-1/2 -translate-y-1/2 bg-gradient-to-r from-red-500 to-rose-500 text-white text-xs px-2.5 py-1 rounded-full font-bold shadow-lg shadow-red-200">0</span>
+                    </a>
+                </div>
 
-                <!-- 🪙 Special Currency Menu -->
-                <a href="#" class="nav-item flex items-center gap-4 p-4 text-slate-600 hover:text-slate-800 font-medium" onclick="switchTab('special-currency', this); return false;" data-perm="manage_special_currencies">
-                    <i class="fa-solid fa-coins w-5 text-center text-lg"></i>
-                    <span>สกุลเงินพิเศษ</span>
-                </a>
+                <!-- ── จัดการผู้ใช้ ── -->
+                <div class="nav-group-header" onclick="toggleNavGroup('group-users', this)">
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-users text-violet-400"></i> จัดการผู้ใช้</div>
+                    <i class="fa-solid fa-chevron-down chevron text-slate-400"></i>
+                </div>
+                <div class="nav-group-body pl-1" id="group-users">
+                    <a href="#" class="nav-item flex items-center gap-4 p-3.5 text-slate-600 font-medium" onclick="switchTab('users', this); return false;" data-perm="manage_users">
+                        <i class="fa-solid fa-users w-5 text-center text-lg"></i><span>รายชื่อผู้ใช้</span>
+                    </a>
+                    <a href="#" class="nav-item flex items-center gap-4 p-3.5 text-slate-600 font-medium" onclick="switchTab('roles', this); return false;" data-perm="manage_roles">
+                        <i class="fa-solid fa-user-shield w-5 text-center text-lg"></i><span>จัดการยศและสิทธิ์</span>
+                    </a>
+                </div>
 
-                <a href="#" class="nav-item flex items-center gap-4 p-4 text-slate-600 hover:text-slate-800 font-medium" onclick="switchTab('payments', this); return false;" data-perm="manage_payments">
-                    <i class="fa-solid fa-credit-card w-5 text-center text-lg"></i>
-                    <span>ช่องทางชำระเงิน</span>
-                </a>
+                <!-- ── การเงิน ── -->
+                <div class="nav-group-header" onclick="toggleNavGroup('group-finance', this)">
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-coins text-amber-400"></i> การเงิน</div>
+                    <i class="fa-solid fa-chevron-down chevron text-slate-400"></i>
+                </div>
+                <div class="nav-group-body pl-1" id="group-finance">
+                    <a href="#" class="nav-item flex items-center gap-4 p-3.5 text-slate-600 font-medium relative" onclick="switchTab('topup', this); return false;" data-perm="manage_topup">
+                        <i class="fa-solid fa-money-bill-transfer w-5 text-center text-lg"></i><span>จัดการเติมเงิน</span>
+                        <span id="topupBadge" class="hidden absolute right-3 top-1/2 -translate-y-1/2 bg-gradient-to-r from-red-500 to-rose-500 text-white text-xs px-2.5 py-1 rounded-full font-bold shadow-lg shadow-red-200">0</span>
+                    </a>
+                    <a href="#" class="nav-item flex items-center gap-4 p-3.5 text-slate-600 font-medium" onclick="switchTab('special-currency', this); return false;" data-perm="manage_special_currencies">
+                        <i class="fa-solid fa-gem w-5 text-center text-lg"></i><span>สกุลเงินพิเศษ</span>
+                    </a>
+                    <a href="#" class="nav-item flex items-center gap-4 p-3.5 text-slate-600 font-medium" onclick="switchTab('payments', this); return false;" data-perm="manage_payments">
+                        <i class="fa-solid fa-credit-card w-5 text-center text-lg"></i><span>ช่องทางชำระเงิน</span>
+                    </a>
+                </div>
 
-                <a href="#" class="nav-item flex items-center gap-4 p-4 text-slate-600 hover:text-slate-800 font-medium" onclick="switchTab('products', this); return false;" data-perm="manage_products">
-                    <i class="fa-solid fa-box w-5 text-center text-lg"></i>
-                    <span>จัดการสินค้า</span>
-                </a>
+                <!-- ── จัดการร้านค้า ── -->
+                <div class="nav-group-header" onclick="toggleNavGroup('group-store', this)">
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-store text-emerald-400"></i> จัดการร้านค้า</div>
+                    <i class="fa-solid fa-chevron-down chevron text-slate-400"></i>
+                </div>
+                <div class="nav-group-body pl-1" id="group-store">
+                    <a href="#" class="nav-item flex items-center gap-4 p-3.5 text-slate-600 font-medium" onclick="switchTab('products', this); return false;" data-perm="manage_products">
+                        <i class="fa-solid fa-box w-5 text-center text-lg"></i><span>จัดการสินค้า</span>
+                    </a>
+                </div>
 
-                <a href="#" class="nav-item flex items-center gap-4 p-4 text-slate-600 hover:text-slate-800 font-medium relative" onclick="switchTab('messages', this); return false;" data-perm="view_messages">
-                    <i class="fa-solid fa-envelope w-5 text-center text-lg"></i>
-                    <span>จดหมาย</span>
-                    <span id="sidebarUnreadBadge" class="hidden absolute right-3 top-1/2 -translate-y-1/2 bg-gradient-to-r from-red-500 to-rose-500 text-white text-xs px-2.5 py-1 rounded-full font-bold shadow-lg shadow-red-200">0</span>
-                </a>
+                <!-- ── ตั้งค่าเว็บไซต์ ── -->
+                <div class="nav-group-header" onclick="toggleNavGroup('group-settings', this)">
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-gear text-slate-400"></i> ตั้งค่าเว็บไซต์</div>
+                    <i class="fa-solid fa-chevron-down chevron text-slate-400"></i>
+                </div>
+                <div class="nav-group-body pl-1" id="group-settings">
+                    <a href="#" class="nav-item flex items-center gap-4 p-3.5 text-slate-600 font-medium" onclick="switchTab('site-settings', this); return false;" data-perm="manage_settings">
+                        <i class="fa-solid fa-sliders w-5 text-center text-lg"></i><span>จัดการทั่วไป & SEO</span>
+                    </a>
+                    <a href="#" class="nav-item flex items-center gap-4 p-3.5 text-slate-600 font-medium" onclick="switchTab('theme', this); return false;" data-perm="manage_settings">
+                        <i class="fa-solid fa-palette w-5 text-center text-lg"></i><span>ธีม & สีเว็บไซต์</span>
+                    </a>
+                    <a href="#" class="nav-item flex items-center gap-4 p-3.5 text-slate-600 font-medium" onclick="switchTab('settings', this); return false;" data-perm="manage_settings">
+                        <i class="fa-solid fa-lock w-5 text-center text-lg"></i><span>ความปลอดภัย</span>
+                    </a>
+                </div>
 
-                <!-- Role Management Menu -->
-                <a href="#" class="nav-item flex items-center gap-4 p-4 text-slate-600 hover:text-slate-800 font-medium" onclick="switchTab('roles', this); return false;" data-perm="manage_roles">
-                    <i class="fa-solid fa-user-shield w-5 text-center text-lg"></i>
-                    <span>จัดการยศและสิทธิ์</span>
-                </a>
-
-                <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 px-4 mt-6">การตั้งค่า</div>
-                
-                <a href="#" class="nav-item flex items-center gap-4 p-4 text-slate-600 hover:text-slate-800 font-medium" onclick="switchTab('theme', this); return false;" data-perm="manage_settings">
-                    <i class="fa-solid fa-palette w-5 text-center text-lg"></i>
-                    <span>ธีมเว็บไซต์</span>
-                </a>
-
-                <a href="#" class="nav-item flex items-center gap-4 p-4 text-slate-600 hover:text-slate-800 font-medium" onclick="switchTab('settings', this); return false;" data-perm="manage_settings">
-                    <i class="fa-solid fa-gear w-5 text-center text-lg"></i>
-                    <span>ตั้งค่าระบบ</span>
-                </a>
             </nav>
 
             <div class="p-4 border-t border-slate-200/80 bg-slate-50/50">
@@ -1187,7 +1514,7 @@
                 </div>
             </div>
 
-            <!-- Orders -->
+            <!-- Orders - Enhanced for Rent Website Support -->
             <div id="orders" class="section">
                 <div class="glass-panel p-6">
                     <div class="section-header">
@@ -1197,9 +1524,24 @@
                             </div>
                             รายการคำสั่งซื้อ
                         </h3>
-                        <div class="flex gap-3">
-                            <select id="orderStatusFilter" onchange="loadOrders()" class="px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-100">
-                                <option value="all">ทั้งหมด</option>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <div class="relative">
+                                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                <input type="text" id="orderSearch" placeholder="ค้นหาเลขที่, ลูกค้า, เว็บไซต์..." 
+                                    class="pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-100 w-full sm:w-64 transition-all"
+                                    onkeyup="filterOrders()">
+                            </div>
+                            <select id="orderTypeFilter" onchange="filterOrders()" class="px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-100">
+                                <option value="all">ทุกประเภท</option>
+                                <option value="rent">เช่าเว็บไซต์</option>
+                                <option value="create">สร้างใหม่</option>
+                                <option value="renew">ต่ออายุ</option>
+                                <option value="product">สินค้าทั่วไป</option>
+                                <option value="service">บริการ</option>
+                            </select>
+                            <select id="orderStatusFilter" onchange="filterOrders()" class="px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-100">
+                                <option value="all">ทุกสถานะ</option>
+                                <option value="pending_review">รอ Admin ตรวจสอบ</option>
                                 <option value="completed">สำเร็จ</option>
                                 <option value="pending">รอดำเนินการ</option>
                                 <option value="cancelled">ยกเลิก</option>
@@ -1209,17 +1551,45 @@
                             </button>
                         </div>
                     </div>
+
+                    <!-- Order Stats -->
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+                        <div class="stat-card bg-gradient-to-br from-violet-50 to-purple-50 border-violet-200">
+                            <div class="text-violet-600 text-2xl font-bold" id="totalOrdersCount">0</div>
+                            <div class="text-violet-700 text-sm font-medium">คำสั่งซื้อทั้งหมด</div>
+                        </div>
+                        <div class="stat-card bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200 relative overflow-hidden">
+                            <div class="absolute top-2 right-2 w-2 h-2 bg-amber-400 rounded-full animate-ping"></div>
+                            <div class="text-amber-600 text-2xl font-bold" id="pendingReviewCount">0</div>
+                            <div class="text-amber-700 text-sm font-medium">รอ Admin ตรวจสอบ</div>
+                        </div>
+                        <div class="stat-card bg-gradient-to-br from-emerald-50 to-teal-50 border-emerald-200">
+                            <div class="text-emerald-600 text-2xl font-bold" id="rentOrdersCount">0</div>
+                            <div class="text-emerald-700 text-sm font-medium">เช่าเว็บไซต์</div>
+                        </div>
+                        <div class="stat-card bg-gradient-to-br from-sky-50 to-indigo-50 border-sky-200">
+                            <div class="text-sky-600 text-2xl font-bold" id="productOrdersCount">0</div>
+                            <div class="text-sky-700 text-sm font-medium">สินค้า/บริการ</div>
+                        </div>
+                        <div class="stat-card bg-gradient-to-br from-rose-50 to-pink-50 border-rose-200">
+                            <div class="text-rose-600 text-2xl font-bold" id="pendingOrdersCount">0</div>
+                            <div class="text-rose-700 text-sm font-medium">รอดำเนินการ</div>
+                        </div>
+                    </div>
+
                     <div class="table-container bg-slate-50/50 rounded-2xl border border-slate-200/60">
-                        <table class="w-full min-w-[800px]">
+                        <table class="w-full min-w-[1200px]">
                             <thead class="bg-white border-b border-slate-200">
                                 <tr>
-                                    <th class="text-left py-4 px-6 font-bold text-slate-700 text-sm uppercase tracking-wider">เลขที่</th>
-                                    <th class="text-left py-4 px-6 font-bold text-slate-700 text-sm uppercase tracking-wider">วันที่</th>
-                                    <th class="text-left py-4 px-6 font-bold text-slate-700 text-sm uppercase tracking-wider">ลูกค้า</th>
-                                    <th class="text-left py-4 px-6 font-bold text-slate-700 text-sm uppercase tracking-wider">สินค้า</th>
-                                    <th class="text-left py-4 px-6 font-bold text-slate-700 text-sm uppercase tracking-wider">จำนวนเงิน</th>
-                                    <th class="text-left py-4 px-6 font-bold text-slate-700 text-sm uppercase tracking-wider">สถานะ</th>
-                                    <th class="text-left py-4 px-6 font-bold text-slate-700 text-sm uppercase tracking-wider">จัดการ</th>
+                                    <th class="text-left py-4 px-4 font-bold text-slate-700 text-xs uppercase tracking-wider">เลขที่</th>
+                                    <th class="text-left py-4 px-4 font-bold text-slate-700 text-xs uppercase tracking-wider">ประเภท</th>
+                                    <th class="text-left py-4 px-4 font-bold text-slate-700 text-xs uppercase tracking-wider">วันที่</th>
+                                    <th class="text-left py-4 px-4 font-bold text-slate-700 text-xs uppercase tracking-wider">เว็บไซต์</th>
+                                    <th class="text-left py-4 px-4 font-bold text-slate-700 text-xs uppercase tracking-wider">ผู้เช่า</th>
+                                    <th class="text-left py-4 px-4 font-bold text-slate-700 text-xs uppercase tracking-wider">แพ็กเกจ / ราคา</th>
+                                    <th class="text-left py-4 px-4 font-bold text-slate-700 text-xs uppercase tracking-wider">วันหมดอายุ</th>
+                                    <th class="text-left py-4 px-4 font-bold text-slate-700 text-xs uppercase tracking-wider">สถานะ</th>
+                                    <th class="text-left py-4 px-4 font-bold text-slate-700 text-xs uppercase tracking-wider">จัดการ</th>
                                 </tr>
                             </thead>
                             <tbody id="ordersTableBody" class="divide-y divide-slate-100 bg-white">
@@ -1306,7 +1676,7 @@
                 </div>
             </div>
 
-            <!-- 🪙 SPECIAL CURRENCY SECTION -->
+            <!-- 🪙 SPECIAL CURRENCY SECTION - Updated with Icons -->
             <div id="special-currency" class="section">
                 <div class="glass-panel p-6">
                     <div class="section-header">
@@ -1436,107 +1806,6 @@
                 </div>
             </div>
 
-            <!-- Messages -->
-            <div id="messages" class="section">
-                <div class="glass-panel h-[calc(100vh-140px)] flex flex-col lg:flex-row overflow-hidden">
-                    <!-- Sidebar Folders -->
-                    <div class="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-slate-200/80 bg-slate-50/30 flex flex-col">
-                        <div class="p-4">
-                            <button onclick="openComposeModal()" class="w-full btn-modern py-3 rounded-xl font-semibold shadow-lg shadow-sky-200 flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-pen"></i>
-                                <span>เขียนจดหมาย</span>
-                            </button>
-                        </div>
-
-                        <nav class="flex-1 overflow-y-auto px-2 space-y-1" id="folderList">
-                            <div onclick="switchFolder('inbox')" class="folder-item active flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 cursor-pointer transition-colors" data-folder="inbox">
-                                <i class="fa-solid fa-inbox w-5 text-center"></i>
-                                <span class="flex-1 font-medium">กล่องข้อความ</span>
-                                <span id="folderInboxBadge" class="hidden bg-gradient-to-r from-red-500 to-rose-500 text-white text-xs px-2.5 py-1 rounded-full font-bold">0</span>
-                            </div>
-                            <div onclick="switchFolder('starred')" class="folder-item flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 cursor-pointer transition-colors hover:bg-slate-100" data-folder="starred">
-                                <i class="fa-solid fa-star w-5 text-center text-amber-400"></i>
-                                <span class="font-medium">ติดดาว</span>
-                            </div>
-                            <div onclick="switchFolder('sent')" class="folder-item flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 cursor-pointer transition-colors hover:bg-slate-100" data-folder="sent">
-                                <i class="fa-solid fa-paper-plane w-5 text-center"></i>
-                                <span class="font-medium">ส่งแล้ว</span>
-                            </div>
-                            <div onclick="switchFolder('drafts')" class="folder-item flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 cursor-pointer transition-colors hover:bg-slate-100" data-folder="drafts">
-                                <i class="fa-solid fa-file-pen w-5 text-center"></i>
-                                <span class="font-medium">ฉบับร่าง</span>
-                            </div>
-                            <div onclick="switchFolder('trash')" class="folder-item flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 cursor-pointer transition-colors hover:bg-slate-100" data-folder="trash">
-                                <i class="fa-solid fa-trash-can w-5 text-center"></i>
-                                <span class="font-medium">ถังขยะ</span>
-                            </div>
-                        </nav>
-
-                        <div class="p-4 border-t border-slate-200/80">
-                            <div class="text-xs text-slate-400 mb-3 font-bold uppercase tracking-wider">สถิติ</div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span class="text-slate-600">ทั้งหมด</span>
-                                <span class="font-bold text-slate-800" id="statTotalMessages">0</span>
-                            </div>
-                            <div class="flex justify-between text-sm">
-                                <span class="text-slate-600">ที่ยังไม่อ่าน</span>
-                                <span class="font-bold text-sky-600" id="statUnreadCount">0</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Message List Area -->
-                    <div class="flex-1 flex flex-col bg-white/30">
-                        <!-- Toolbar -->
-                        <div class="px-4 py-3 border-b border-slate-200/80 flex items-center gap-3 bg-white/80 backdrop-blur-sm sticky top-0 z-10">
-                            <div class="flex items-center gap-2">
-                                <input type="checkbox" id="selectAllMessages" class="w-5 h-5 rounded-lg border-slate-300 text-sky-500 focus:ring-sky-400 cursor-pointer" onchange="toggleSelectAll()">
-                                <button onclick="refreshMessages()" class="p-2.5 hover:bg-slate-100 rounded-xl text-slate-600 transition-colors" title="รีเฟรช">
-                                    <i class="fa-solid fa-rotate"></i>
-                                </button>
-                                <button onclick="deleteSelected()" class="p-2.5 hover:bg-red-50 text-slate-600 hover:text-red-600 rounded-xl transition-colors hidden" id="deleteSelectedBtn" title="ลบที่เลือก">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </div>
-
-                            <div class="flex-1 relative">
-                                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                                <input type="text" id="messageSearch" placeholder="ค้นหาจดหมาย..." 
-                                    class="w-full pl-11 pr-4 py-2.5 bg-slate-100 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-400 text-sm"
-                                    onkeyup="searchMessages()">
-                            </div>
-
-                            <div class="flex items-center gap-1">
-                                <span class="text-sm text-slate-500 font-medium hidden sm:inline" id="messageRange">1-25 จาก 0</span>
-                                <button onclick="prevPage()" class="p-2.5 hover:bg-slate-100 rounded-xl text-slate-600 disabled:opacity-50 transition-colors" id="prevBtn" disabled>
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </button>
-                                <button onclick="nextPage()" class="p-2.5 hover:bg-slate-100 rounded-xl text-slate-600 disabled:opacity-50 transition-colors" id="nextBtn" disabled>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Message List -->
-                        <div id="messageListContainer" class="flex-1 overflow-y-auto">
-                            <div id="messageList" class="divide-y divide-slate-100/50">
-                            </div>
-                            <div id="messageEmpty" class="hidden flex flex-col items-center justify-center h-full text-slate-400 py-12">
-                                <div class="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mb-4">
-                                    <i class="fa-solid fa-inbox text-4xl text-slate-300"></i>
-                                </div>
-                                <p class="text-lg font-bold text-slate-600">ไม่มีข้อความ</p>
-                                <p class="text-sm">กล่องจดหมายว่างเปล่า</p>
-                            </div>
-                            <div id="messageLoading" class="flex flex-col items-center justify-center h-full py-12">
-                                <div class="w-16 h-16 border-4 border-sky-100 border-t-sky-400 rounded-full animate-spin mb-3"></div>
-                                <p class="text-slate-500">กำลังโหลดจดหมาย...</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Products -->
             <div id="products" class="section">
                 <div class="glass-panel p-6">
@@ -1562,57 +1831,349 @@
                 </div>
             </div>
 
-            <!-- Theme -->
-            <div id="theme" class="section">
-                <div class="glass-panel p-6 max-w-2xl mx-auto">
-                    <h3 class="section-title mb-6">
-                        <div class="section-icon bg-gradient-to-br from-purple-400 to-pink-500">
-                            <i class="fa-solid fa-palette"></i>
-                        </div>
-                        ตั้งค่าธีม
-                    </h3>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">ชื่อเว็บไซต์</label>
-                            <input type="text" id="siteNameInput" value="PanderX" 
-                                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-100 transition-all">
-                        </div>
-                        
-                        <div class="grid grid-cols-2 gap-6">
+            <!-- ══ Site General Settings + SEO ══ -->
+            <div id="site-settings" class="section">
+                <div class="glass-panel p-6">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <div class="section-icon bg-gradient-to-br from-sky-400 to-blue-600">
+                                <i class="fa-solid fa-sliders"></i>
+                            </div>
+                            จัดการทั่วไป & SEO
+                        </h3>
+                        <button onclick="saveSiteSettings()" class="btn-modern">
+                            <i class="fa-solid fa-floppy-disk mr-2"></i>บันทึกการตั้งค่า
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- LEFT: Basic Info -->
+                        <div class="space-y-5">
+                            <h4 class="font-bold text-slate-700 flex items-center gap-2 pb-3 border-b border-slate-200">
+                                <i class="fa-solid fa-circle-info text-sky-500"></i> ข้อมูลพื้นฐาน
+                            </h4>
+
                             <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">สีหลัก</label>
-                                <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                    <input type="color" id="primaryColor" value="#38bdf8" 
-                                        class="w-12 h-12 rounded-lg cursor-pointer border-0 bg-transparent">
-                                    <span class="text-sm text-slate-600 font-mono">#38bdf8</span>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">ชื่อเว็บไซต์ <span class="text-red-400">*</span></label>
+                                <input type="text" id="ss_siteName" placeholder="เช่น PanderX Shop"
+                                    class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-100 font-semibold text-lg transition-all">
+                                <p class="text-xs text-slate-400 mt-1">ชื่อนี้จะแสดงใน browser tab และ header</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">ประเภทร้านค้า</label>
+                                <div class="flex flex-wrap gap-2 mb-3" id="shopTypeTags">
+                                    <div class="seo-tag" onclick="toggleShopType(this, 'game_topup')" data-type="game_topup">
+                                        <i class="fa-solid fa-gamepad"></i> ร้านเติมเกม
+                                    </div>
+                                    <div class="seo-tag" onclick="toggleShopType(this, 'game_items')" data-type="game_items">
+                                        <i class="fa-solid fa-sword"></i> ร้านขายไอเทมเกม
+                                    </div>
+                                    <div class="seo-tag" onclick="toggleShopType(this, 'product_shop')" data-type="product_shop">
+                                        <i class="fa-solid fa-bag-shopping"></i> ร้านขายของ
+                                    </div>
+                                    <div class="seo-tag" onclick="toggleShopType(this, 'digital')" data-type="digital">
+                                        <i class="fa-solid fa-mobile-screen"></i> สินค้าดิจิทัล
+                                    </div>
+                                    <div class="seo-tag" onclick="toggleShopType(this, 'service')" data-type="service">
+                                        <i class="fa-solid fa-concierge-bell"></i> บริการ
+                                    </div>
+                                    <div class="seo-tag" onclick="toggleShopType(this, 'rent_web')" data-type="rent_web">
+                                        <i class="fa-solid fa-globe"></i> เช่าเว็บ
+                                    </div>
+                                </div>
+                                <input type="hidden" id="ss_shopTypes" value="">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">คำอธิบายเว็บไซต์ (Description)</label>
+                                <textarea id="ss_description" rows="3" placeholder="อธิบายเกี่ยวกับร้านค้า สินค้า หรือบริการของคุณ..."
+                                    class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-100 transition-all resize-none"></textarea>
+                                <div class="flex justify-between mt-1">
+                                    <p class="text-xs text-slate-400">ความยาวที่แนะนำ 120-160 ตัวอักษร</p>
+                                    <span id="descCharCount" class="text-xs text-slate-400">0/160</span>
                                 </div>
                             </div>
+
                             <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">สีรอง</label>
-                                <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                    <input type="color" id="secondaryColor" value="#818cf8" 
-                                        class="w-12 h-12 rounded-lg cursor-pointer border-0 bg-transparent">
-                                    <span class="text-sm text-slate-600 font-mono">#818cf8</span>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">URL เว็บไซต์ (สำหรับอ้างอิง)</label>
+                                <div class="flex items-center bg-slate-50 border-2 border-slate-200 rounded-xl overflow-hidden focus-within:border-sky-400 transition-all">
+                                    <span class="px-3 text-slate-400 text-sm font-mono">https://</span>
+                                    <input type="text" id="ss_siteUrl" placeholder="yourdomain.com"
+                                        class="flex-1 py-3 pr-4 bg-transparent focus:outline-none text-sm font-mono">
                                 </div>
                             </div>
                         </div>
 
-                        <button onclick="saveTheme()" class="btn-modern w-full">
-                            <i class="fa-solid fa-save mr-2"></i>บันทึกธีม
+                        <!-- RIGHT: SEO -->
+                        <div class="space-y-5">
+                            <h4 class="font-bold text-slate-700 flex items-center gap-2 pb-3 border-b border-slate-200">
+                                <i class="fa-solid fa-magnifying-glass text-emerald-500"></i> SEO Settings
+                                <span class="text-xs font-normal text-slate-400 ml-2">ปรับแต่งการค้นหา</span>
+                            </h4>
+
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">SEO Title (Browser Tab)</label>
+                                <input type="text" id="ss_seoTitle" placeholder="ชื่อที่แสดงใน Google และ browser tab..."
+                                    class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all">
+                                <div class="mt-2 p-3 bg-white rounded-xl border border-slate-200 text-sm">
+                                    <div class="text-blue-600 font-semibold truncate" id="seoTitlePreview">ชื่อเว็บไซต์ของคุณ</div>
+                                    <div class="text-emerald-600 text-xs" id="seoUrlPreview">https://yourdomain.com</div>
+                                    <div class="text-slate-500 text-xs mt-1 line-clamp-2" id="seoDescPreview">คำอธิบายเว็บไซต์จะปรากฏที่นี่...</div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Keywords</label>
+                                <div class="relative">
+                                    <input type="text" id="ss_keywordInput" placeholder="พิมพ์แล้วกด Enter เพื่อเพิ่ม keyword..."
+                                        class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all"
+                                        onkeydown="addKeyword(event)">
+                                </div>
+                                <div class="flex flex-wrap gap-2 mt-3 min-h-[40px]" id="keywordTags"></div>
+                                <input type="hidden" id="ss_keywords" value="">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Favicon URL</label>
+                                <input type="text" id="ss_favicon" placeholder="https://example.com/favicon.ico"
+                                    class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all text-sm">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">OG Image URL (Social Share)</label>
+                                <input type="text" id="ss_ogImage" placeholder="https://example.com/og-image.jpg"
+                                    class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all text-sm">
+                                <p class="text-xs text-slate-400 mt-1">รูปที่แสดงเมื่อแชร์บน Facebook, Line, Twitter</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact & Social -->
+                    <div class="mt-6 pt-6 border-t border-slate-200">
+                        <h4 class="font-bold text-slate-700 flex items-center gap-2 mb-4">
+                            <i class="fa-solid fa-link text-pink-500"></i> ช่องทางติดต่อ & โซเชียลมีเดีย
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="flex items-center gap-3 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 focus-within:border-sky-400 transition-all">
+                                <i class="fa-brands fa-line text-emerald-500 text-xl w-6 text-center"></i>
+                                <input type="text" id="ss_line" placeholder="Line ID หรือ @" class="flex-1 bg-transparent focus:outline-none text-sm">
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 focus-within:border-sky-400 transition-all">
+                                <i class="fa-brands fa-facebook text-blue-500 text-xl w-6 text-center"></i>
+                                <input type="text" id="ss_facebook" placeholder="Facebook Page URL" class="flex-1 bg-transparent focus:outline-none text-sm">
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 focus-within:border-sky-400 transition-all">
+                                <i class="fa-brands fa-discord text-indigo-500 text-xl w-6 text-center"></i>
+                                <input type="text" id="ss_discord" placeholder="Discord Invite Link" class="flex-1 bg-transparent focus:outline-none text-sm">
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 focus-within:border-sky-400 transition-all">
+                                <i class="fa-solid fa-phone text-green-500 text-xl w-6 text-center"></i>
+                                <input type="text" id="ss_phone" placeholder="เบอร์โทรติดต่อ" class="flex-1 bg-transparent focus:outline-none text-sm">
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 focus-within:border-sky-400 transition-all">
+                                <i class="fa-solid fa-envelope text-red-400 text-xl w-6 text-center"></i>
+                                <input type="text" id="ss_email" placeholder="อีเมลติดต่อ" class="flex-1 bg-transparent focus:outline-none text-sm">
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 focus-within:border-sky-400 transition-all">
+                                <i class="fa-brands fa-tiktok text-slate-800 text-xl w-6 text-center"></i>
+                                <input type="text" id="ss_tiktok" placeholder="TikTok @username" class="flex-1 bg-transparent focus:outline-none text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end mt-6 pt-4 border-t border-slate-200">
+                        <button onclick="saveSiteSettings()" class="btn-modern px-8">
+                            <i class="fa-solid fa-floppy-disk mr-2"></i>บันทึกการตั้งค่าทั้งหมด
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Settings -->
+            <!-- ══ Theme & Colors ══ -->
+            <div id="theme" class="section">
+                <div class="glass-panel p-6">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <div class="section-icon bg-gradient-to-br from-purple-400 to-pink-500">
+                                <i class="fa-solid fa-palette"></i>
+                            </div>
+                            ธีม & สีเว็บไซต์
+                        </h3>
+                        <button onclick="saveTheme()" class="btn-modern">
+                            <i class="fa-solid fa-floppy-disk mr-2"></i>บันทึกธีม
+                        </button>
+                    </div>
+
+                    <!-- Live Preview Bar -->
+                    <div class="mb-6 p-5 bg-slate-50 rounded-2xl border border-slate-200">
+                        <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">ตัวอย่างสีธีม (Live Preview)</div>
+                        <div class="theme-preview-bar mb-3" id="themePreviewBar"></div>
+                        <div class="flex gap-3 flex-wrap">
+                            <div class="h-12 w-12 rounded-xl shadow-md transition-all" id="previewPrimary" style="background:var(--color-primary)"></div>
+                            <div class="h-12 w-12 rounded-xl shadow-md transition-all" id="previewSecondary" style="background:var(--color-secondary)"></div>
+                            <div class="h-12 w-12 rounded-xl shadow-md transition-all" id="previewAccent" style="background:var(--color-accent)"></div>
+                            <div class="h-12 w-12 rounded-xl shadow-md border transition-all" id="previewBg" style="background:var(--color-bg)"></div>
+                            <div class="h-12 w-12 rounded-xl shadow-md transition-all" id="previewHeader" style="background:var(--color-header-bg)"></div>
+                            <div class="flex-1 min-w-[120px] h-12 rounded-xl shadow-md flex items-center justify-center text-sm font-bold border transition-all" id="previewText" style="background:var(--color-surface);color:var(--color-text)">
+                                ตัวอย่างข้อความ
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Left: Colors -->
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-slate-700 flex items-center gap-2 pb-3 border-b border-slate-200">
+                                <i class="fa-solid fa-droplet text-purple-500"></i> สีหลักของเว็บ
+                            </h4>
+
+                            <div class="color-swatch-row">
+                                <input type="color" id="tc_primary" value="#0ea5e9" oninput="livePreviewColor('primary', this.value)">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-slate-700 text-sm">สีหลัก (Primary)</div>
+                                    <div class="text-xs text-slate-400">ปุ่ม, ลิงก์, border focus</div>
+                                </div>
+                                <code class="text-xs bg-white px-2 py-1 rounded-lg border text-slate-600 font-mono" id="tc_primary_val">#0ea5e9</code>
+                            </div>
+
+                            <div class="color-swatch-row">
+                                <input type="color" id="tc_secondary" value="#6366f1" oninput="livePreviewColor('secondary', this.value)">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-slate-700 text-sm">สีรอง (Secondary)</div>
+                                    <div class="text-xs text-slate-400">Gradient, accent icons</div>
+                                </div>
+                                <code class="text-xs bg-white px-2 py-1 rounded-lg border text-slate-600 font-mono" id="tc_secondary_val">#6366f1</code>
+                            </div>
+
+                            <div class="color-swatch-row">
+                                <input type="color" id="tc_accent" value="#f59e0b" oninput="livePreviewColor('accent', this.value)">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-slate-700 text-sm">สีไฮไลต์ (Accent)</div>
+                                    <div class="text-xs text-slate-400">Badge, notification, ราคา</div>
+                                </div>
+                                <code class="text-xs bg-white px-2 py-1 rounded-lg border text-slate-600 font-mono" id="tc_accent_val">#f59e0b</code>
+                            </div>
+
+                            <div class="color-swatch-row">
+                                <input type="color" id="tc_bg" value="#f0f9ff" oninput="livePreviewColor('bg', this.value)">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-slate-700 text-sm">สีพื้นหลัง (Background)</div>
+                                    <div class="text-xs text-slate-400">Body background color</div>
+                                </div>
+                                <code class="text-xs bg-white px-2 py-1 rounded-lg border text-slate-600 font-mono" id="tc_bg_val">#f0f9ff</code>
+                            </div>
+                        </div>
+
+                        <!-- Right: More colors + Font -->
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-slate-700 flex items-center gap-2 pb-3 border-b border-slate-200">
+                                <i class="fa-solid fa-font text-pink-500"></i> ฟอนต์ & ข้อความ
+                            </h4>
+
+                            <div class="color-swatch-row">
+                                <input type="color" id="tc_text" value="#1e293b" oninput="livePreviewColor('text', this.value)">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-slate-700 text-sm">สีฟอนต์หลัก</div>
+                                    <div class="text-xs text-slate-400">ข้อความทั่วไป, หัวข้อ</div>
+                                </div>
+                                <code class="text-xs bg-white px-2 py-1 rounded-lg border text-slate-600 font-mono" id="tc_text_val">#1e293b</code>
+                            </div>
+
+                            <div class="color-swatch-row">
+                                <input type="color" id="tc_textMuted" value="#64748b" oninput="livePreviewColor('textMuted', this.value)">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-slate-700 text-sm">สีฟอนต์รอง</div>
+                                    <div class="text-xs text-slate-400">ข้อความ subtext, placeholder</div>
+                                </div>
+                                <code class="text-xs bg-white px-2 py-1 rounded-lg border text-slate-600 font-mono" id="tc_textMuted_val">#64748b</code>
+                            </div>
+
+                            <div class="color-swatch-row">
+                                <input type="color" id="tc_headerBg" value="#ffffff" oninput="livePreviewColor('headerBg', this.value)">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-slate-700 text-sm">สีพื้น Header</div>
+                                    <div class="text-xs text-slate-400">Navbar, topbar background</div>
+                                </div>
+                                <code class="text-xs bg-white px-2 py-1 rounded-lg border text-slate-600 font-mono" id="tc_headerBg_val">#ffffff</code>
+                            </div>
+
+                            <div class="color-swatch-row">
+                                <input type="color" id="tc_footerBg" value="#f8fafc" oninput="livePreviewColor('footerBg', this.value)">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-slate-700 text-sm">สีพื้น Footer</div>
+                                    <div class="text-xs text-slate-400">Footer, bottom bar</div>
+                                </div>
+                                <code class="text-xs bg-white px-2 py-1 rounded-lg border text-slate-600 font-mono" id="tc_footerBg_val">#f8fafc</code>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Font Family</label>
+                                <select id="tc_fontFamily" onchange="livePreviewFont(this.value)" class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-purple-400 transition-all">
+                                    <option value="Prompt,sans-serif">Prompt (ภาษาไทย แนะนำ)</option>
+                                    <option value="Kanit,sans-serif">Kanit</option>
+                                    <option value="Sarabun,sans-serif">Sarabun</option>
+                                    <option value="Inter,sans-serif">Inter (English)</option>
+                                    <option value="Poppins,sans-serif">Poppins</option>
+                                    <option value="Noto Sans Thai,sans-serif">Noto Sans Thai</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Font Size Base</label>
+                                <div class="flex items-center gap-4">
+                                    <input type="range" id="tc_fontSize" min="12" max="20" value="16" step="1"
+                                        class="flex-1" oninput="livePreviewFontSize(this.value)">
+                                    <span class="text-sm font-bold text-slate-700 w-12 text-center" id="tc_fontSize_val">16px</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Presets -->
+                    <div class="mt-6 pt-6 border-t border-slate-200">
+                        <h4 class="font-bold text-slate-700 flex items-center gap-2 mb-4">
+                            <i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i> ธีมสำเร็จรูป
+                        </h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <button onclick="applyPreset('ocean')" class="p-3 rounded-2xl border-2 border-transparent hover:border-sky-300 transition-all group">
+                                <div class="h-8 rounded-xl mb-2 bg-gradient-to-r from-sky-400 to-blue-600 group-hover:scale-105 transition-transform"></div>
+                                <div class="text-xs font-semibold text-slate-600 text-center">🌊 Ocean Blue</div>
+                            </button>
+                            <button onclick="applyPreset('forest')" class="p-3 rounded-2xl border-2 border-transparent hover:border-emerald-300 transition-all group">
+                                <div class="h-8 rounded-xl mb-2 bg-gradient-to-r from-emerald-400 to-teal-600 group-hover:scale-105 transition-transform"></div>
+                                <div class="text-xs font-semibold text-slate-600 text-center">🌿 Forest Green</div>
+                            </button>
+                            <button onclick="applyPreset('sunset')" class="p-3 rounded-2xl border-2 border-transparent hover:border-orange-300 transition-all group">
+                                <div class="h-8 rounded-xl mb-2 bg-gradient-to-r from-orange-400 to-rose-500 group-hover:scale-105 transition-transform"></div>
+                                <div class="text-xs font-semibold text-slate-600 text-center">🌅 Sunset</div>
+                            </button>
+                            <button onclick="applyPreset('midnight')" class="p-3 rounded-2xl border-2 border-transparent hover:border-purple-300 transition-all group">
+                                <div class="h-8 rounded-xl mb-2 bg-gradient-to-r from-violet-600 to-indigo-800 group-hover:scale-105 transition-transform"></div>
+                                <div class="text-xs font-semibold text-slate-600 text-center">🌙 Midnight</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3 mt-6 pt-4 border-t border-slate-200">
+                        <button onclick="resetTheme()" class="btn-secondary flex-1">
+                            <i class="fa-solid fa-rotate-left mr-2"></i>รีเซ็ตค่าเริ่มต้น
+                        </button>
+                        <button onclick="saveTheme()" class="btn-modern flex-1">
+                            <i class="fa-solid fa-floppy-disk mr-2"></i>บันทึกธีม
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ Security Settings ══ -->
             <div id="settings" class="section">
                 <div class="glass-panel p-6 max-w-2xl mx-auto">
                     <h3 class="section-title mb-6">
                         <div class="section-icon bg-gradient-to-br from-slate-400 to-slate-600">
-                            <i class="fa-solid fa-gear"></i>
+                            <i class="fa-solid fa-lock"></i>
                         </div>
-                        ตั้งค่าระบบ
+                        ความปลอดภัย
                     </h3>
                     
                     <div class="space-y-6">
@@ -1657,6 +2218,126 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- Website Order Detail Modal -->
+    <div id="websiteOrderModal" class="modal-overlay">
+        <div class="modal-content modal-xl p-6">
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">รายละเอียดคำสั่งเช่าเว็บไซต์</h3>
+                        <p class="text-xs text-slate-500" id="websiteOrderModalId">-</p>
+                    </div>
+                </div>
+                <button onclick="closeWebsiteOrderModal()" class="p-2 hover:bg-slate-100 rounded-xl text-slate-400 hover:text-slate-600 transition">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Left: Website Info -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-slate-700 flex items-center gap-2 text-sm uppercase tracking-wider">
+                        <i class="fa-solid fa-globe text-violet-500"></i> ข้อมูลเว็บไซต์
+                    </h4>
+                    <div class="website-detail-grid">
+                        <div class="detail-field">
+                            <label>Subdomain</label>
+                            <div class="value font-mono text-violet-700" id="wom_subdomain">-</div>
+                        </div>
+                        <div class="detail-field">
+                            <label>Domain</label>
+                            <div class="value font-mono text-violet-700" id="wom_domain">-</div>
+                        </div>
+                        <div class="detail-field full-width">
+                            <label>URL เต็ม</label>
+                            <div class="value text-sky-600" id="wom_fullUrl">-</div>
+                        </div>
+                        <div class="detail-field">
+                            <label>ประเภทคำสั่ง (orderType)</label>
+                            <div class="value" id="wom_orderType">-</div>
+                        </div>
+                        <div class="detail-field">
+                            <label>จำนวนวันเช่า (durationDays)</label>
+                            <div class="value" id="wom_durationDays">-</div>
+                        </div>
+                        <div class="detail-field">
+                            <label>วันที่สร้าง</label>
+                            <div class="value" id="wom_createdAt">-</div>
+                        </div>
+                        <div class="detail-field">
+                            <label>วันหมดอายุ (expiryDate)</label>
+                            <div class="value" id="wom_expiryDate">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Owner Info -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-slate-700 flex items-center gap-2 text-sm uppercase tracking-wider">
+                        <i class="fa-solid fa-user text-sky-500"></i> ข้อมูลผู้เช่า
+                    </h4>
+                    <div class="website-detail-grid">
+                        <div class="detail-field full-width">
+                            <label>ชื่อผู้เช่า (ownerDisplayName)</label>
+                            <div class="value" id="wom_ownerDisplayName">-</div>
+                        </div>
+                        <div class="detail-field full-width">
+                            <label>อีเมล (ownerEmail)</label>
+                            <div class="value text-sky-600" id="wom_ownerEmail">-</div>
+                        </div>
+                        <div class="detail-field full-width">
+                            <label>User ID (ownerId)</label>
+                            <div class="value font-mono text-xs text-slate-500" id="wom_ownerId">-</div>
+                        </div>
+                    </div>
+
+                    <h4 class="font-bold text-slate-700 flex items-center gap-2 text-sm uppercase tracking-wider mt-4">
+                        <i class="fa-solid fa-box text-emerald-500"></i> แพ็กเกจ & ราคา
+                    </h4>
+                    <div class="website-detail-grid">
+                        <div class="detail-field">
+                            <label>Package ID</label>
+                            <div class="value font-mono text-xs" id="wom_packageId">-</div>
+                        </div>
+                        <div class="detail-field">
+                            <label>Package Name</label>
+                            <div class="value" id="wom_packageName">-</div>
+                        </div>
+                        <div class="detail-field">
+                            <label>ราคาตั้งต้น (basePrice)</label>
+                            <div class="value text-slate-600" id="wom_basePrice">-</div>
+                        </div>
+                        <div class="detail-field">
+                            <label>ส่วนลด (discountPercent)</label>
+                            <div class="value text-rose-600" id="wom_discountPercent">-</div>
+                        </div>
+                        <div class="detail-field full-width" style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-color: #6ee7b7;">
+                            <label>ราคารวมสุทธิ (totalAmount)</label>
+                            <div class="value text-emerald-700 text-xl" id="wom_totalAmount">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Agent -->
+            <div class="mt-5">
+                <h4 class="font-bold text-slate-700 flex items-center gap-2 text-sm uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-desktop text-slate-500"></i> User Agent (ตรวจสอบอุปกรณ์)
+                </h4>
+                <div class="bg-slate-900 text-green-400 rounded-xl p-4 font-mono text-xs break-all leading-relaxed" id="wom_userAgent">-</div>
+            </div>
+
+            <div class="flex gap-3 mt-6 pt-5 border-t border-slate-200">
+                <button onclick="closeWebsiteOrderModal()" class="flex-1 py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors">
+                    <i class="fa-solid fa-xmark mr-2"></i>ปิด
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Edit User Modal with Role Selection -->
@@ -1740,7 +2421,7 @@
                     </div>
                     <div>
                         <h3 class="text-xl font-bold text-slate-800" id="detailUserName">User Name</h3>
-                        <p class="text-sm text-slate-500" id="detailUserEmail">user@email.com</p>
+                        <p class="text-sm text-slate-500" id="detailUserEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6510160017250008040c094b060a08">[email&#160;protected]</a></p>
                         <div class="flex gap-2 mt-1">
                             <span class="text-xs bg-white px-2 py-1 rounded-full border border-slate-200 text-slate-600 font-medium">
                                 ยอดเงิน: <span class="text-sky-600 font-bold" id="detailUserBalance">฿0</span>
@@ -1899,7 +2580,7 @@
         </div>
     </div>
 
-    <!-- 🪙 SPECIAL CURRENCY MODAL -->
+    <!-- 🪙 SPECIAL CURRENCY MODAL - Updated with Font Awesome Icons -->
     <div id="specialCurrencyModal" class="modal-overlay">
         <div class="modal-content modal-large p-6">
             <div class="flex justify-between items-center mb-6">
@@ -1936,8 +2617,10 @@
                         <div class="custom-dropdown" id="iconDropdown">
                             <div class="dropdown-trigger" onclick="toggleDropdown('iconDropdown')">
                                 <span id="selectedIconDisplay" class="flex items-center gap-2">
-                                    <span class="text-2xl">🪙</span>
-                                    <span>เหรียญ (🪙)</span>
+                                    <span class="w-8 h-8 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center">
+                                        <i class="fa-solid fa-coins"></i>
+                                    </span>
+                                    <span>เหรียญ (Coins)</span>
                                 </span>
                                 <i class="fa-solid fa-chevron-down arrow"></i>
                             </div>
@@ -1945,41 +2628,58 @@
                                 <div class="dropdown-search">
                                     <input type="text" placeholder="ค้นหาไอคอน..." onkeyup="filterDropdownItems(this, 'icon')">
                                 </div>
-                                <div class="dropdown-item selected" onclick="selectIcon('🪙', 'เหรียญ')" data-value="🪙">
-                                    <span class="text-2xl">🪙</span>
-                                    <span>เหรียญ (🪙)</span>
+                                <div class="dropdown-item selected" onclick="selectIcon('fa-coins', 'เหรียญ (Coins)', 'amber')" data-value="fa-coins" data-color="amber">
+                                    <span class="dropdown-item-icon bg-amber-100 text-amber-600"><i class="fa-solid fa-coins"></i></span>
+                                    <span>เหรียญ (Coins)</span>
                                 </div>
-                                <div class="dropdown-item" onclick="selectIcon('💎', 'เพชร')" data-value="💎">
-                                    <span class="text-2xl">💎</span>
-                                    <span>เพชร (💎)</span>
+                                <div class="dropdown-item" onclick="selectIcon('fa-gem', 'เพชร (Gem)', 'purple')" data-value="fa-gem" data-color="purple">
+                                    <span class="dropdown-item-icon bg-purple-100 text-purple-600"><i class="fa-solid fa-gem"></i></span>
+                                    <span>เพชร (Gem)</span>
                                 </div>
-                                <div class="dropdown-item" onclick="selectIcon('🏆', 'ถ้วยรางวัล')" data-value="🏆">
-                                    <span class="text-2xl">🏆</span>
-                                    <span>ถ้วยรางวัล (🏆)</span>
+                                <div class="dropdown-item" onclick="selectIcon('fa-trophy', 'ถ้วยรางวัล (Trophy)', 'yellow')" data-value="fa-trophy" data-color="yellow">
+                                    <span class="dropdown-item-icon bg-yellow-100 text-yellow-600"><i class="fa-solid fa-trophy"></i></span>
+                                    <span>ถ้วยรางวัล (Trophy)</span>
                                 </div>
-                                <div class="dropdown-item" onclick="selectIcon('⭐', 'ดาว')" data-value="⭐">
-                                    <span class="text-2xl">⭐</span>
-                                    <span>ดาว (⭐)</span>
+                                <div class="dropdown-item" onclick="selectIcon('fa-star', 'ดาว (Star)', 'orange')" data-value="fa-star" data-color="orange">
+                                    <span class="dropdown-item-icon bg-orange-100 text-orange-600"><i class="fa-solid fa-star"></i></span>
+                                    <span>ดาว (Star)</span>
                                 </div>
-                                <div class="dropdown-item" onclick="selectIcon('🔷', '菱形')" data-value="🔷">
-                                    <span class="text-2xl">🔷</span>
-                                    <span>菱形น้ำเงิน (🔷)</span>
+                                <div class="dropdown-item" onclick="selectIcon('fa-certificate', 'ตรา (Badge)', 'blue')" data-value="fa-certificate" data-color="blue">
+                                    <span class="dropdown-item-icon bg-blue-100 text-blue-600"><i class="fa-solid fa-certificate"></i></span>
+                                    <span>ตรา (Badge)</span>
                                 </div>
-                                <div class="dropdown-item" onclick="selectIcon('🧧', 'อั่งเปา')" data-value="🧧">
-                                    <span class="text-2xl">🧧</span>
-                                    <span>อั่งเปา (🧧)</span>
+                                <div class="dropdown-item" onclick="selectIcon('fa-envelope-open-text', 'อั่งเปา (Envelope)', 'red')" data-value="fa-envelope-open-text" data-color="red">
+                                    <span class="dropdown-item-icon bg-red-100 text-red-600"><i class="fa-solid fa-envelope-open-text"></i></span>
+                                    <span>อั่งเปา (Envelope)</span>
                                 </div>
-                                <div class="dropdown-item" onclick="selectIcon('🎫', 'ตั๋ว')" data-value="🎫">
-                                    <span class="text-2xl">🎫</span>
-                                    <span>ตั๋ว (🎫)</span>
+                                <div class="dropdown-item" onclick="selectIcon('fa-ticket', 'ตั๋ว (Ticket)', 'pink')" data-value="fa-ticket" data-color="pink">
+                                    <span class="dropdown-item-icon bg-pink-100 text-pink-600"><i class="fa-solid fa-ticket"></i></span>
+                                    <span>ตั๋ว (Ticket)</span>
                                 </div>
-                                <div class="dropdown-item" onclick="selectIcon('💰', 'ถุงเงิน')" data-value="💰">
-                                    <span class="text-2xl">💰</span>
-                                    <span>ถุงเงิน (💰)</span>
+                                <div class="dropdown-item" onclick="selectIcon('fa-sack-dollar', 'ถุงเงิน (Money Bag)', 'emerald')" data-value="fa-sack-dollar" data-color="emerald">
+                                    <span class="dropdown-item-icon bg-emerald-100 text-emerald-600"><i class="fa-solid fa-sack-dollar"></i></span>
+                                    <span>ถุงเงิน (Money Bag)</span>
+                                </div>
+                                <div class="dropdown-item" onclick="selectIcon('fa-bolt', 'สายฟ้า (Bolt)', 'yellow')" data-value="fa-bolt" data-color="yellow">
+                                    <span class="dropdown-item-icon bg-yellow-100 text-yellow-600"><i class="fa-solid fa-bolt"></i></span>
+                                    <span>สายฟ้า (Bolt)</span>
+                                </div>
+                                <div class="dropdown-item" onclick="selectIcon('fa-heart', 'หัวใจ (Heart)', 'rose')" data-value="fa-heart" data-color="rose">
+                                    <span class="dropdown-item-icon bg-rose-100 text-rose-600"><i class="fa-solid fa-heart"></i></span>
+                                    <span>หัวใจ (Heart)</span>
+                                </div>
+                                <div class="dropdown-item" onclick="selectIcon('fa-crown', 'มงกุฎ (Crown)', 'amber')" data-value="fa-crown" data-color="amber">
+                                    <span class="dropdown-item-icon bg-amber-100 text-amber-600"><i class="fa-solid fa-crown"></i></span>
+                                    <span>มงกุฎ (Crown)</span>
+                                </div>
+                                <div class="dropdown-item" onclick="selectIcon('fa-medal', 'เหรียญรางวัล (Medal)', 'orange')" data-value="fa-medal" data-color="orange">
+                                    <span class="dropdown-item-icon bg-orange-100 text-orange-600"><i class="fa-solid fa-medal"></i></span>
+                                    <span>เหรียญรางวัล (Medal)</span>
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="currencyIcon" value="🪙">
+                        <input type="hidden" id="currencyIcon" value="fa-coins">
+                        <input type="hidden" id="currencyIconColor" value="amber">
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">อัตราแลกเปลี่ยน (ต่อ 1 บาท)</label>
@@ -2287,7 +2987,7 @@
 
     <div id="toastContainer" class="toast-container"></div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // ==================== Global Variables ====================
         let db = null;
         let currentUser = null;
@@ -2296,13 +2996,6 @@
         let allOrders = [];
         let mainChart = null;
         let categoryChart = null;
-        
-        let currentFolder = 'inbox';
-        let messages = [];
-        let selectedMessages = new Set();
-        let currentMessage = null;
-        let messagePage = 1;
-        const messagesPerPage = 25;
         
         // Topup & Payment variables
         let currentTopupRequest = null;
@@ -2352,6 +3045,22 @@
             { value: 'manage_roles', label: 'จัดการยศและสิทธิ์', category: 'settings' }
         ];
 
+        // Font Awesome Icons for Special Currencies
+        const currencyIcons = [
+            { value: 'fa-coins', label: 'เหรียญ (Coins)', color: 'amber' },
+            { value: 'fa-gem', label: 'เพชร (Gem)', color: 'purple' },
+            { value: 'fa-trophy', label: 'ถ้วยรางวัล (Trophy)', color: 'yellow' },
+            { value: 'fa-star', label: 'ดาว (Star)', color: 'orange' },
+            { value: 'fa-certificate', label: 'ตรา (Badge)', color: 'blue' },
+            { value: 'fa-envelope-open-text', label: 'อั่งเปา (Envelope)', color: 'red' },
+            { value: 'fa-ticket', label: 'ตั๋ว (Ticket)', color: 'pink' },
+            { value: 'fa-sack-dollar', label: 'ถุงเงิน (Money Bag)', color: 'emerald' },
+            { value: 'fa-bolt', label: 'สายฟ้า (Bolt)', color: 'yellow' },
+            { value: 'fa-heart', label: 'หัวใจ (Heart)', color: 'rose' },
+            { value: 'fa-crown', label: 'มงกุฎ (Crown)', color: 'amber' },
+            { value: 'fa-medal', label: 'เหรียญรางวัล (Medal)', color: 'orange' }
+        ];
+
         // ==================== Initialization ====================
         document.addEventListener('DOMContentLoaded', async function() {
             try {
@@ -2367,6 +3076,7 @@
                 await initSystem();
                 setupTopupRealtime();
                 initCustomDropdowns();
+                loadTheme().catch(()=>{});  // load saved theme on startup
             } catch (error) {
                 console.error('Firebase Error:', error);
                 showError('ไม่สามารถโหลด Firebase: ' + error.message);
@@ -3057,18 +3767,50 @@
                         const date = o.createdAt ? new Date(o.createdAt.toDate()).toLocaleString('th-TH') : '-';
                         const statusClass = o.status === 'completed' ? 'bg-emerald-100 text-emerald-700' : 
                                           o.status === 'cancelled' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700';
+                        
+                        // Determine order type icon and label
+                        let typeIcon = 'fa-shopping-bag';
+                        let typeLabel = 'สินค้า';
+                        let typeClass = 'bg-sky-100 text-sky-700';
+                        
+                        if (o.orderType === 'rent') {
+                            typeIcon = 'fa-globe';
+                            typeLabel = 'เช่าเว็บ';
+                            typeClass = 'bg-violet-100 text-violet-700';
+                        } else if (o.orderType === 'service') {
+                            typeIcon = 'fa-concierge-bell';
+                            typeLabel = 'บริการ';
+                            typeClass = 'bg-emerald-100 text-emerald-700';
+                        }
+                        
                         return `
                             <div class="timeline-item order p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
                                 <div class="flex justify-between items-start mb-2">
                                     <div>
-                                        <div class="font-bold text-slate-800">ออเดอร์ #${o.id.slice(-6)}</div>
+                                        <div class="font-bold text-slate-800 flex items-center gap-2">
+                                            ออเดอร์ #${o.id.slice(-6)}
+                                            <span class="text-xs px-2 py-0.5 rounded-full ${typeClass}">
+                                                <i class="fa-solid ${typeIcon} mr-1"></i>${typeLabel}
+                                            </span>
+                                        </div>
                                         <div class="text-xs text-slate-500">${date}</div>
                                     </div>
                                     <span class="px-2 py-1 rounded-full text-xs font-bold ${statusClass}">
                                         ${o.status === 'completed' ? 'สำเร็จ' : o.status === 'cancelled' ? 'ยกเลิก' : 'รอดำเนินการ'}
                                     </span>
                                 </div>
-                                <div class="text-sm text-slate-600 mb-2">สินค้า: ${o.packageName || 'ไม่ระบุ'}</div>
+                                <div class="text-sm text-slate-600 mb-2">
+                                    ${o.orderType === 'rent' ? `
+                                        <div class="flex items-center gap-2 text-violet-600">
+                                            <i class="fa-solid fa-globe"></i>
+                                            <span class="font-medium">${o.websiteName || 'เว็บไซต์'}</span>
+                                            <span class="text-xs bg-violet-100 px-2 py-0.5 rounded">${o.planName || ''}</span>
+                                        </div>
+                                    ` : `
+                                        สินค้า: ${o.packageName || 'ไม่ระบุ'}
+                                    `}
+                                </div>
+                                ${o.websiteUrl ? `<div class="text-xs text-slate-500 mb-2"><i class="fa-solid fa-link mr-1"></i>${o.websiteUrl}</div>` : ''}
                                 <div class="text-right font-bold text-sky-600">฿${(o.amount || 0).toLocaleString()}</div>
                             </div>
                         `;
@@ -3481,86 +4223,452 @@
             }
         }
 
-        // ==================== Orders Management ====================
+        // ==================== Orders Management with Rent Website Support ====================
+        
+        // Order data storage for filtering
+        let allOrdersData = [];
+        let currentWebsiteOrderId = null;
+        
         async function loadOrders() {
             if (!checkAccess('manage_orders')) return;
             
             const tbody = document.getElementById('ordersTableBody');
             const emptyState = document.getElementById('ordersEmpty');
-            const statusFilter = document.getElementById('orderStatusFilter')?.value || 'all';
             
             if (!tbody) return;
             
-            tbody.innerHTML = '<tr><td colspan="7" class="text-center py-8"><div class="w-8 h-8 border-4 border-sky-100 border-t-sky-400 rounded-full animate-spin mx-auto"></div></td></tr>';
+            tbody.innerHTML = '<tr><td colspan="9" class="text-center py-8"><div class="w-8 h-8 border-4 border-sky-100 border-t-sky-400 rounded-full animate-spin mx-auto"></div></td></tr>';
             if (emptyState) emptyState.classList.add('hidden');
             
             try {
                 const { collection, getDocs, query, orderBy } = window.firestoreFns;
                 let ordersList = [];
                 
+                // ── 1. โหลด orders ปกติ ──
                 try {
                     const q = query(collection(db, 'orders'), orderBy('createdAt', 'desc'));
                     const snap = await getDocs(q);
-                    snap.forEach(d => ordersList.push({ id: d.id, ...d.data() }));
+                    snap.forEach(d => ordersList.push({ id: d.id, _source: 'orders', ...d.data() }));
                 } catch (indexError) {
                     const snap = await getDocs(collection(db, 'orders'));
-                    snap.forEach(d => ordersList.push({ id: d.id, ...d.data() }));
+                    snap.forEach(d => ordersList.push({ id: d.id, _source: 'orders', ...d.data() }));
                     ordersList.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
                 }
+
+                // ── 2. โหลด admin_panel_websites (คำสั่งเช่าเว็บไซต์) ──
+                let websiteOrders = [];
+                try {
+                    const wq = query(collection(db, 'admin_panel_websites'), orderBy('createdAt', 'desc'));
+                    const wSnap = await getDocs(wq);
+                    wSnap.forEach(d => {
+                        const data = d.data();
+                        // Normalize ให้ตรงกับโครงสร้าง orders
+                        websiteOrders.push({
+                            id: d.id,
+                            _source: 'admin_panel_websites',
+                            // Website fields
+                            subdomain: data.subdomain || '',
+                            domain: data.domain || '',
+                            websiteName: data.subdomain ? `${data.subdomain}.${data.domain}` : (data.domain || 'ไม่ระบุ'),
+                            // Duration & Expiry
+                            durationDays: data.durationDays || data.selectedDuration || 0,
+                            expiryDate: data.expiryDate || null,
+                            // Owner Info
+                            ownerId: data.ownerId || '',
+                            ownerEmail: data.ownerEmail || '',
+                            ownerDisplayName: data.ownerDisplayName || '',
+                            customerName: data.ownerDisplayName || data.ownerEmail || 'ไม่ระบุ',
+                            customerEmail: data.ownerEmail || '',
+                            // Package
+                            packageId: data.packageId || '',
+                            packageName: data.packageName || '',
+                            // Pricing
+                            totalAmount: data.totalAmount || 0,
+                            basePrice: data.basePrice || 0,
+                            discountPercent: data.discountPercent || 0,
+                            amount: data.totalAmount || 0,
+                            // Order type & status
+                            orderType: 'rent',
+                            rentOrderType: data.orderType || 'create', // 'create' or 'renew'
+                            adminReviewStatus: data.adminReviewStatus || 'pending_review',
+                            status: data.adminReviewStatus === 'approved' ? 'completed' : 
+                                    data.adminReviewStatus === 'rejected' ? 'cancelled' : 'pending',
+                            // User Agent
+                            userAgent: data.userAgent || '',
+                            // Timestamps
+                            createdAt: data.createdAt || null,
+                        });
+                    });
+                } catch (wErr) {
+                    // fallback without orderBy
+                    try {
+                        const wSnap = await getDocs(collection(db, 'admin_panel_websites'));
+                        wSnap.forEach(d => {
+                            const data = d.data();
+                            websiteOrders.push({
+                                id: d.id,
+                                _source: 'admin_panel_websites',
+                                subdomain: data.subdomain || '',
+                                domain: data.domain || '',
+                                websiteName: data.subdomain ? `${data.subdomain}.${data.domain}` : (data.domain || 'ไม่ระบุ'),
+                                durationDays: data.durationDays || data.selectedDuration || 0,
+                                expiryDate: data.expiryDate || null,
+                                ownerId: data.ownerId || '',
+                                ownerEmail: data.ownerEmail || '',
+                                ownerDisplayName: data.ownerDisplayName || '',
+                                customerName: data.ownerDisplayName || data.ownerEmail || 'ไม่ระบุ',
+                                customerEmail: data.ownerEmail || '',
+                                packageId: data.packageId || '',
+                                packageName: data.packageName || '',
+                                totalAmount: data.totalAmount || 0,
+                                basePrice: data.basePrice || 0,
+                                discountPercent: data.discountPercent || 0,
+                                amount: data.totalAmount || 0,
+                                orderType: 'rent',
+                                rentOrderType: data.orderType || 'create',
+                                adminReviewStatus: data.adminReviewStatus || 'pending_review',
+                                status: data.adminReviewStatus === 'approved' ? 'completed' : 
+                                        data.adminReviewStatus === 'rejected' ? 'cancelled' : 'pending',
+                                userAgent: data.userAgent || '',
+                                createdAt: data.createdAt || null,
+                            });
+                        });
+                        websiteOrders.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+                    } catch (e2) {
+                        console.warn('Cannot load admin_panel_websites:', e2);
+                    }
+                }
+
+                // ── 3. รวม & เรียงตามวันที่ ──
+                const combined = [...websiteOrders, ...ordersList];
+                combined.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
                 
-                if (statusFilter !== 'all') {
-                    ordersList = ordersList.filter(o => o.status === statusFilter);
+                allOrdersData = combined;
+                
+                // ── 4. Update stats ──
+                const totalOrders = combined.length;
+                const rentOrders = combined.filter(o => o.orderType === 'rent').length;
+                const productOrders = combined.filter(o => o.orderType === 'product' || !o.orderType).length;
+                const pendingOrders = combined.filter(o => o.status === 'pending').length;
+                const pendingReview = combined.filter(o => o.adminReviewStatus === 'pending_review').length;
+                
+                document.getElementById('totalOrdersCount').textContent = totalOrders;
+                document.getElementById('rentOrdersCount').textContent = rentOrders;
+                document.getElementById('productOrdersCount').textContent = productOrders;
+                document.getElementById('pendingOrdersCount').textContent = pendingOrders;
+                
+                const prEl = document.getElementById('pendingReviewCount');
+                if (prEl) prEl.textContent = pendingReview;
+                
+                // Orders badge
+                const ordersBadge = document.getElementById('ordersBadge');
+                if (ordersBadge) {
+                    const badgeCount = pendingOrders + pendingReview;
+                    if (badgeCount > 0) {
+                        ordersBadge.textContent = badgeCount;
+                        ordersBadge.classList.remove('hidden');
+                    } else {
+                        ordersBadge.classList.add('hidden');
+                    }
                 }
                 
-                if (ordersList.length === 0) {
-                    tbody.innerHTML = '';
-                    if (emptyState) emptyState.classList.remove('hidden');
-                    return;
-                }
-                
-                const canCancel = hasPermission('cancel_orders');
-                
-                tbody.innerHTML = ordersList.map(o => {
-                    const date = o.createdAt ? new Date(o.createdAt.toDate()).toLocaleDateString('th-TH') : '-';
-                    const statusClasses = {
-                        completed: 'bg-emerald-100 text-emerald-700 border border-emerald-200',
-                        cancelled: 'bg-rose-100 text-rose-700 border border-rose-200',
-                        pending: 'bg-amber-100 text-amber-700 border border-amber-200'
-                    };
-                    const statusTexts = {
-                        completed: 'สำเร็จ',
-                        cancelled: 'ยกเลิก',
-                        pending: 'รอดำเนินการ'
-                    };
-                    
-                    return `
-                        <tr class="hover:bg-slate-50/80 transition-colors">
-                            <td class="py-4 px-6 text-sm font-bold text-slate-800">#${o.id.slice(-6)}</td>
-                            <td class="py-4 px-6 text-sm text-slate-600 font-medium">${date}</td>
-                            <td class="py-4 px-6 text-sm text-slate-800 font-medium">${o.customerName || o.customerEmail || 'ไม่ระบุ'}</td>
-                            <td class="py-4 px-6 text-sm text-slate-600">${o.packageName || 'สินค้า'}</td>
-                            <td class="py-4 px-6 text-sm font-bold text-slate-800">฿${(o.amount || 0).toLocaleString()}</td>
-                            <td class="py-4 px-6">
-                                <span class="px-3 py-1.5 rounded-full text-xs font-bold ${statusClasses[o.status] || statusClasses.pending}">
-                                    ${statusTexts[o.status] || 'รอดำเนินการ'}
-                                </span>
-                            </td>
-                            <td class="py-4 px-6">
-                                ${o.status === 'pending' && canCancel ? `
-                                    <button onclick="cancelOrder('${o.id}')" class="text-red-500 hover:text-red-700 font-medium text-sm">
-                                        <i class="fa-solid fa-xmark mr-1"></i>ยกเลิก
-                                    </button>
-                                ` : '-'}
-                            </td>
-                        </tr>
-                    `;
-                }).join('');
+                renderOrdersTable(combined);
                 
             } catch (e) {
                 console.error('Load orders error:', e);
-                tbody.innerHTML = '<tr><td colspan="7" class="text-center py-8 text-red-500">โหลดข้อมูลไม่สำเร็จ</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="9" class="text-center py-8 text-red-500">โหลดข้อมูลไม่สำเร็จ: ' + e.message + '</td></tr>';
             }
         }
+
+        function renderOrdersTable(orders) {
+            const tbody = document.getElementById('ordersTableBody');
+            const emptyState = document.getElementById('ordersEmpty');
+            
+            if (!tbody) return;
+            
+            const statusFilter = document.getElementById('orderStatusFilter')?.value || 'all';
+            const typeFilter = document.getElementById('orderTypeFilter')?.value || 'all';
+            const search = document.getElementById('orderSearch')?.value.toLowerCase() || '';
+            
+            // Filter orders
+            let filtered = orders.filter(o => {
+                // Status filter - support pending_review
+                let matchStatus = statusFilter === 'all';
+                if (!matchStatus) {
+                    if (statusFilter === 'pending_review') {
+                        matchStatus = o.adminReviewStatus === 'pending_review';
+                    } else {
+                        matchStatus = o.status === statusFilter;
+                    }
+                }
+
+                // Type filter
+                let matchType = typeFilter === 'all';
+                if (!matchType) {
+                    if (typeFilter === 'create') matchType = o.rentOrderType === 'create';
+                    else if (typeFilter === 'renew') matchType = o.rentOrderType === 'renew';
+                    else if (typeFilter === 'rent') matchType = o.orderType === 'rent';
+                    else if (typeFilter === 'product') matchType = (!o.orderType || o.orderType === 'product');
+                    else matchType = o.orderType === typeFilter;
+                }
+
+                const matchSearch = !search || 
+                    (o.id || '').toLowerCase().includes(search) || 
+                    (o.customerName || '').toLowerCase().includes(search) ||
+                    (o.customerEmail || '').toLowerCase().includes(search) ||
+                    (o.ownerEmail || '').toLowerCase().includes(search) ||
+                    (o.ownerDisplayName || '').toLowerCase().includes(search) ||
+                    (o.websiteName || '').toLowerCase().includes(search) ||
+                    (o.subdomain || '').toLowerCase().includes(search) ||
+                    (o.domain || '').toLowerCase().includes(search) ||
+                    (o.packageName || '').toLowerCase().includes(search);
+                return matchStatus && matchType && matchSearch;
+            });
+            
+            if (filtered.length === 0) {
+                tbody.innerHTML = '';
+                if (emptyState) emptyState.classList.remove('hidden');
+                return;
+            }
+            
+            if (emptyState) emptyState.classList.add('hidden');
+            
+            const canCancel = hasPermission('cancel_orders');
+            const canManage = hasPermission('manage_orders');
+            
+            tbody.innerHTML = filtered.map(o => {
+                const date = o.createdAt ? new Date(o.createdAt.toDate()).toLocaleDateString('th-TH', { 
+                    day: 'numeric', month: 'short', year: '2-digit'
+                }) : '-';
+                
+                // ── Order Type Badges ──
+                let typeBadge = '';
+                let detailInfo = '';
+                
+                if (o.orderType === 'rent') {
+                    // Main type badge
+                    typeBadge = `<span class="order-type-badge rent"><i class="fa-solid fa-globe mr-1"></i>เช่าเว็บ</span>`;
+                    
+                    // Sub-type badge (create / renew)
+                    if (o.rentOrderType === 'renew') {
+                        typeBadge += `<br><span class="order-type-badge renew mt-1" style="font-size:0.65rem;padding:2px 8px;"><i class="fa-solid fa-rotate-right mr-1"></i>ต่ออายุ</span>`;
+                    } else {
+                        typeBadge += `<br><span class="order-type-badge create mt-1" style="font-size:0.65rem;padding:2px 8px;"><i class="fa-solid fa-plus mr-1"></i>สร้างใหม่</span>`;
+                    }
+
+                    // Website detail info
+                    const fullUrl = o.subdomain && o.domain ? `${o.subdomain}.${o.domain}` : (o.websiteName || '-');
+                    detailInfo = `
+                        <div class="flex flex-col gap-0.5">
+                            <span class="font-bold text-violet-700 text-sm">${fullUrl}</span>
+                            ${o.packageName ? `<span class="text-xs text-slate-500"><i class="fa-solid fa-box mr-1"></i>${o.packageName}</span>` : ''}
+                            ${o.durationDays ? `<span class="text-xs text-slate-400"><i class="fa-solid fa-calendar-days mr-1"></i>${o.durationDays} วัน</span>` : ''}
+                        </div>
+                    `;
+                } else if (o.orderType === 'service') {
+                    typeBadge = `<span class="order-type-badge service"><i class="fa-solid fa-concierge-bell mr-1"></i>บริการ</span>`;
+                    detailInfo = `<span class="text-slate-600 text-sm">${o.serviceName || o.packageName || 'บริการ'}</span>`;
+                } else {
+                    typeBadge = `<span class="order-type-badge product"><i class="fa-solid fa-shopping-bag mr-1"></i>สินค้า</span>`;
+                    detailInfo = `<span class="text-slate-600 text-sm">${o.packageName || 'สินค้า'}</span>`;
+                }
+                
+                // ── Status Badges ──
+                const statusClasses = {
+                    completed: 'bg-emerald-100 text-emerald-700 border border-emerald-200',
+                    cancelled: 'bg-rose-100 text-rose-700 border border-rose-200',
+                    pending: 'bg-amber-100 text-amber-700 border border-amber-200'
+                };
+                const statusTexts = {
+                    completed: '<i class="fa-solid fa-check-circle mr-1"></i>สำเร็จ',
+                    cancelled: '<i class="fa-solid fa-xmark-circle mr-1"></i>ยกเลิก',
+                    pending: '<i class="fa-solid fa-clock mr-1"></i>รอดำเนินการ'
+                };
+                
+                // Admin Review Status badge
+                let adminReviewBadge = '';
+                if (o._source === 'admin_panel_websites') {
+                    const reviewColors = {
+                        pending_review: 'review-badge pending_review',
+                        approved: 'review-badge approved',
+                        rejected: 'review-badge rejected'
+                    };
+                    const reviewTexts = {
+                        pending_review: '<i class="fa-solid fa-hourglass-half mr-1"></i>รอตรวจสอบ',
+                        approved: '<i class="fa-solid fa-check mr-1"></i>อนุมัติแล้ว',
+                        rejected: '<i class="fa-solid fa-ban mr-1"></i>ปฏิเสธ'
+                    };
+                    const rs = o.adminReviewStatus || 'pending_review';
+                    adminReviewBadge = `<br><span class="${reviewColors[rs] || reviewColors.pending_review}" style="margin-top:4px;display:inline-flex;">${reviewTexts[rs] || reviewTexts.pending_review}</span>`;
+                }
+                
+                // ── Expiry Date ──
+                let expiryCell = '<span class="text-slate-400 text-xs">-</span>';
+                if (o.expiryDate) {
+                    let expiryDateObj;
+                    if (o.expiryDate?.toDate) expiryDateObj = o.expiryDate.toDate();
+                    else if (typeof o.expiryDate === 'string') expiryDateObj = new Date(o.expiryDate);
+                    else if (o.expiryDate?.seconds) expiryDateObj = new Date(o.expiryDate.seconds * 1000);
+                    
+                    if (expiryDateObj) {
+                        const now = new Date();
+                        const diffDays = Math.ceil((expiryDateObj - now) / (1000 * 60 * 60 * 24));
+                        const dateStr = expiryDateObj.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: '2-digit' });
+                        if (diffDays < 0) {
+                            expiryCell = `<div class="expiry-warning text-xs"><i class="fa-solid fa-triangle-exclamation mr-1"></i>${dateStr}<br><span class="text-red-400 font-normal">หมดอายุแล้ว</span></div>`;
+                        } else if (diffDays <= 7) {
+                            expiryCell = `<div class="expiry-soon text-xs"><i class="fa-solid fa-exclamation-circle mr-1"></i>${dateStr}<br><span class="text-amber-400 font-normal">เหลือ ${diffDays} วัน</span></div>`;
+                        } else {
+                            expiryCell = `<div class="expiry-ok text-xs"><i class="fa-solid fa-calendar-check mr-1"></i>${dateStr}<br><span class="text-emerald-400 font-normal">เหลือ ${diffDays} วัน</span></div>`;
+                        }
+                    }
+                }
+                
+                // ── Customer/Owner Info ──
+                const customerName = o.ownerDisplayName || o.customerName || o.userName || 'ไม่ระบุ';
+                const customerEmail = o.ownerEmail || o.customerEmail || o.userEmail || '';
+                
+                // ── Pricing ──
+                let priceInfo = '';
+                if (o._source === 'admin_panel_websites') {
+                    const base = o.basePrice ? `฿${Number(o.basePrice).toLocaleString()}` : '';
+                    const disc = o.discountPercent ? `<span class="text-rose-500 text-xs">-${o.discountPercent}%</span>` : '';
+                    priceInfo = `
+                        <div class="flex flex-col">
+                            <span class="font-bold text-slate-800 text-sm">฿${Number(o.totalAmount || 0).toLocaleString()}</span>
+                            ${base || disc ? `<span class="text-xs text-slate-400">${base} ${disc}</span>` : ''}
+                        </div>
+                    `;
+                } else {
+                    priceInfo = `<span class="font-bold text-slate-800 text-sm">฿${(o.amount || 0).toLocaleString()}</span>`;
+                }
+                
+                // ── Action Buttons ──
+                let actionButtons = '';
+                if (o._source === 'admin_panel_websites') {
+                    actionButtons = `
+                        <button onclick="openWebsiteOrderModal('${o.id}')" class="px-3 py-1.5 bg-violet-50 text-violet-700 rounded-lg font-semibold hover:bg-violet-100 transition text-xs flex items-center gap-1">
+                            <i class="fa-solid fa-eye"></i> ดูรายละเอียด
+                        </button>
+                    `;
+                } else if (o.status === 'pending' && canCancel) {
+                    actionButtons = `
+                        <button onclick="cancelOrder('${o.id}')" class="text-red-500 hover:text-red-700 font-medium text-xs px-3 py-1.5 bg-red-50 rounded-lg hover:bg-red-100 transition">
+                            <i class="fa-solid fa-xmark mr-1"></i>ยกเลิก
+                        </button>
+                    `;
+                } else {
+                    actionButtons = '<span class="text-slate-300 text-xs">-</span>';
+                }
+                
+                return `
+                    <tr class="hover:bg-slate-50/80 transition-colors ${o._source === 'admin_panel_websites' && o.adminReviewStatus === 'pending_review' ? 'border-l-4 border-amber-400 bg-amber-50/20' : ''}">
+                        <td class="py-3 px-4">
+                            <div class="text-xs font-bold text-slate-800">#${o.id.slice(-6)}</div>
+                            ${o._source === 'admin_panel_websites' ? '<div class="text-xs text-violet-500 font-medium mt-0.5"><i class="fa-solid fa-globe mr-1"></i>Website</div>' : ''}
+                        </td>
+                        <td class="py-3 px-4">${typeBadge}</td>
+                        <td class="py-3 px-4 text-xs text-slate-600 font-medium">${date}</td>
+                        <td class="py-3 px-4 text-sm">${detailInfo}</td>
+                        <td class="py-3 px-4">
+                            <div class="text-sm text-slate-800 font-semibold">${customerName}</div>
+                            <div class="text-xs text-slate-400">${customerEmail}</div>
+                            ${o.ownerId ? `<div class="text-xs text-slate-300 font-mono mt-0.5 truncate max-w-[120px]">${o.ownerId.slice(0,12)}...</div>` : ''}
+                        </td>
+                        <td class="py-3 px-4">${priceInfo}</td>
+                        <td class="py-3 px-4">${expiryCell}</td>
+                        <td class="py-3 px-4">
+                            <span class="px-2.5 py-1 rounded-full text-xs font-bold ${statusClasses[o.status] || statusClasses.pending}">
+                                ${statusTexts[o.status] || statusTexts.pending}
+                            </span>
+                            ${adminReviewBadge}
+                        </td>
+                        <td class="py-3 px-4">
+                            <div class="flex flex-col gap-1.5">${actionButtons}</div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function filterOrders() {
+            renderOrdersTable(allOrdersData);
+        }
+
+        // ── Website Order Modal ──
+        async function openWebsiteOrderModal(docId) {
+            try {
+                const { doc, getDoc } = window.firestoreFns;
+                const snap = await getDoc(doc(db, 'admin_panel_websites', docId));
+                if (!snap.exists()) {
+                    showToast('ไม่พบข้อมูล', 'error');
+                    return;
+                }
+                const data = snap.data();
+                currentWebsiteOrderId = docId;
+
+                // Set modal fields
+                document.getElementById('websiteOrderModalId').textContent = `ID: ${docId}`;
+                
+                const sub = data.subdomain || '';
+                const dom = data.domain || '';
+                document.getElementById('wom_subdomain').textContent = sub || '-';
+                document.getElementById('wom_domain').textContent = dom || '-';
+                document.getElementById('wom_fullUrl').textContent = sub && dom ? `https://${sub}.${dom}` : (dom ? `https://${dom}` : '-');
+
+                const ot = data.orderType || 'create';
+                document.getElementById('wom_orderType').innerHTML = ot === 'renew' ? 
+                    '<span class="order-type-badge renew"><i class="fa-solid fa-rotate-right mr-1"></i>ต่ออายุ (renew)</span>' :
+                    '<span class="order-type-badge create"><i class="fa-solid fa-plus mr-1"></i>สร้างใหม่ (create)</span>';
+
+                document.getElementById('wom_durationDays').textContent = `${data.durationDays || data.selectedDuration || 0} วัน`;
+                
+                // Created At
+                const createdAt = data.createdAt?.toDate ? data.createdAt.toDate().toLocaleString('th-TH') : '-';
+                document.getElementById('wom_createdAt').textContent = createdAt;
+
+                // Expiry Date
+                let expiryStr = '-';
+                if (data.expiryDate) {
+                    let ed;
+                    if (data.expiryDate?.toDate) ed = data.expiryDate.toDate();
+                    else if (typeof data.expiryDate === 'string') ed = new Date(data.expiryDate);
+                    else if (data.expiryDate?.seconds) ed = new Date(data.expiryDate.seconds * 1000);
+                    if (ed) expiryStr = ed.toLocaleString('th-TH');
+                }
+                document.getElementById('wom_expiryDate').textContent = expiryStr;
+
+                // Owner
+                document.getElementById('wom_ownerDisplayName').textContent = data.ownerDisplayName || '-';
+                document.getElementById('wom_ownerEmail').textContent = data.ownerEmail || '-';
+                document.getElementById('wom_ownerId').textContent = data.ownerId || '-';
+
+                // Package & Pricing
+                document.getElementById('wom_packageId').textContent = data.packageId || '-';
+                document.getElementById('wom_packageName').textContent = data.packageName || '-';
+                document.getElementById('wom_basePrice').textContent = data.basePrice ? `฿${Number(data.basePrice).toLocaleString()}` : '-';
+                document.getElementById('wom_discountPercent').textContent = data.discountPercent ? `${data.discountPercent}%` : '0%';
+                document.getElementById('wom_totalAmount').textContent = data.totalAmount ? `฿${Number(data.totalAmount).toLocaleString()}` : '-';
+
+                // User Agent
+                document.getElementById('wom_userAgent').textContent = data.userAgent || 'ไม่มีข้อมูล User Agent';
+
+                document.getElementById('websiteOrderModal').classList.add('active');
+            } catch (e) {
+                console.error('Open website order modal error:', e);
+                showToast('เกิดข้อผิดพลาด: ' + e.message, 'error');
+            }
+        }
+
+        function closeWebsiteOrderModal() {
+            document.getElementById('websiteOrderModal').classList.remove('active');
+            currentWebsiteOrderId = null;
+        }
+
+        // Stub kept for backward compatibility with any existing onclick refs
+        function approveWebsiteOrder() { showToast('ระบบอนุมัติถูกนำออกแล้ว', 'info'); }
+        function rejectWebsiteOrder() { showToast('ระบบปฏิเสธถูกนำออกแล้ว', 'info'); }
+        function quickApproveWebsite() { showToast('ระบบอนุมัติถูกนำออกแล้ว', 'info'); }
 
         async function cancelOrder(orderId) {
             if (!checkAccess('cancel_orders')) return;
@@ -3923,7 +5031,7 @@
             }
         }
 
-        // ==================== 🪙 SPECIAL CURRENCY MANAGEMENT ====================
+        // ==================== 🪙 SPECIAL CURRENCY MANAGEMENT with Font Awesome Icons ====================
 
         async function loadSpecialCurrencies() {
             if (!checkAccess('manage_special_currencies')) return;
@@ -3990,13 +5098,19 @@
             grid.innerHTML = filtered.map(c => {
                 const isActive = c.isActive !== false;
                 const gradientColor = c.color || '#f59e0b';
+                const iconClass = c.icon || 'fa-coins';
+                const iconColor = c.iconColor || 'amber';
+                
+                // Get background color class based on icon color
+                const bgClass = `bg-${iconColor}-100`;
+                const textClass = `text-${iconColor}-600`;
                 
                 return `
                     <div class="special-currency-card ${isActive ? '' : 'inactive'}">
                         <div class="flex justify-between items-start mb-4">
                             <div class="flex items-center gap-4">
-                                <div class="currency-icon" style="background: ${gradientColor}20; color: ${gradientColor}; border: 2px solid ${gradientColor}40;">
-                                    <span class="text-3xl">${c.icon || '🪙'}</span>
+                                <div class="currency-icon ${bgClass} ${textClass}" style="background: ${gradientColor}20; color: ${gradientColor}; border: 2px solid ${gradientColor}40;">
+                                    <i class="fa-solid ${iconClass}"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-slate-800 text-lg flex items-center gap-2">
@@ -4059,8 +5173,8 @@
             form.reset();
             document.getElementById('specialCurrencyId').value = '';
             
-            // Reset dropdown
-            selectIcon('🪙', 'เหรียญ');
+            // Reset dropdown to default
+            selectIcon('fa-coins', 'เหรียญ (Coins)', 'amber');
             selectColor('#f59e0b');
             
             if (currencyId) {
@@ -4076,7 +5190,11 @@
                     document.getElementById('currencyDescription').value = currency.description || '';
                     document.getElementById('currencyIsActive').checked = currency.isActive !== false;
                     
-                    if (currency.icon) selectIcon(currency.icon, currency.icon);
+                    if (currency.icon) {
+                        // Find icon label
+                        const iconData = currencyIcons.find(i => i.value === currency.icon);
+                        selectIcon(currency.icon, iconData?.label || currency.icon, currency.iconColor || 'amber');
+                    }
                     if (currency.color) selectColor(currency.color);
                 }
             } else {
@@ -4106,6 +5224,7 @@
             const code = document.getElementById('currencyCode').value.trim().toUpperCase();
             const exchangeRate = parseFloat(document.getElementById('currencyRate').value) || 1;
             const icon = document.getElementById('currencyIcon').value;
+            const iconColor = document.getElementById('currencyIconColor').value;
             const color = document.getElementById('currencyColor').value;
             const description = document.getElementById('currencyDescription').value.trim();
             const isActive = document.getElementById('currencyIsActive').checked;
@@ -4130,6 +5249,7 @@
                     code: code,
                     exchangeRate: exchangeRate,
                     icon: icon,
+                    iconColor: iconColor,
                     color: color,
                     description: description,
                     isActive: isActive,
@@ -4225,10 +5345,29 @@
             trigger.classList.toggle('active');
         }
 
-        function selectIcon(icon, label) {
+        function selectIcon(icon, label, color) {
             document.getElementById('currencyIcon').value = icon;
+            document.getElementById('currencyIconColor').value = color;
+            
+            // Map color to Tailwind classes
+            const colorClasses = {
+                amber: 'bg-amber-100 text-amber-600',
+                purple: 'bg-purple-100 text-purple-600',
+                yellow: 'bg-yellow-100 text-yellow-600',
+                orange: 'bg-orange-100 text-orange-600',
+                blue: 'bg-blue-100 text-blue-600',
+                red: 'bg-red-100 text-red-600',
+                pink: 'bg-pink-100 text-pink-600',
+                emerald: 'bg-emerald-100 text-emerald-600',
+                rose: 'bg-rose-100 text-rose-600'
+            };
+            
+            const colorClass = colorClasses[color] || 'bg-amber-100 text-amber-600';
+            
             document.getElementById('selectedIconDisplay').innerHTML = `
-                <span class="text-2xl">${icon}</span>
+                <span class="w-8 h-8 rounded-lg ${colorClass} flex items-center justify-center">
+                    <i class="fa-solid ${icon}"></i>
+                </span>
                 <span>${label}</span>
             `;
             
@@ -4607,10 +5746,10 @@
                 'special-currency': 'จัดการสกุลเงินพิเศษ',
                 payments: 'ช่องทางชำระเงิน',
                 products: 'จัดการสินค้า',
-                messages: 'จดหมาย',
                 roles: 'จัดการยศและสิทธิ์',
-                theme: 'ตั้งค่าธีม',
-                settings: 'ตั้งค่าระบบ'
+                theme: 'ธีม & สีเว็บไซต์',
+                'site-settings': 'จัดการทั่วไป & SEO',
+                settings: 'ความปลอดภัย'
             };
             
             const icons = {
@@ -4621,10 +5760,10 @@
                 'special-currency': 'coins',
                 payments: 'credit-card',
                 products: 'box',
-                messages: 'envelope',
                 roles: 'user-shield',
                 theme: 'palette',
-                settings: 'gear'
+                'site-settings': 'sliders',
+                settings: 'lock'
             };
             
             const titleElement = document.getElementById('pageTitle');
@@ -4641,6 +5780,8 @@
             if (tabName === 'special-currency') setTimeout(() => loadSpecialCurrencies(), 100);
             if (tabName === 'payments') setTimeout(() => loadPaymentMethods(), 100);
             if (tabName === 'roles') setTimeout(() => renderRoles(), 100);
+            if (tabName === 'products') setTimeout(() => loadProducts(), 100);
+            if (tabName === 'site-settings') setTimeout(() => loadSiteSettings(), 100);
         }
 
         // ==================== Utilities ====================
@@ -4672,60 +5813,431 @@
             }, 3000);
         }
 
-        function saveTheme() { 
-            if (!checkAccess('manage_settings')) return;
-            showToast('บันทึกธีมสำเร็จ', 'success'); 
+        // ==================== Nav Group Toggle ====================
+        function toggleNavGroup(groupId, headerEl) {
+            const body = document.getElementById(groupId);
+            if (!body) return;
+            const isCollapsed = body.classList.contains('collapsed');
+            body.classList.toggle('collapsed', !isCollapsed);
+            headerEl.classList.toggle('collapsed', !isCollapsed);
         }
-        
-        function updatePin() { 
-            if (!checkAccess('manage_settings')) return;
-            const newPin = document.getElementById('newPin')?.value;
-            const confirmPin = document.getElementById('confirmPin')?.value;
-            
-            if (newPin?.length !== 6) {
-                showToast('PIN ต้องมี 6 หลัก', 'error');
-                return;
-            }
-            if (newPin !== confirmPin) {
-                showToast('PIN ไม่ตรงกัน', 'error');
-                return;
-            }
-            
-            const { doc, setDoc } = window.firestoreFns;
-            setDoc(doc(db, 'system', 'settings'), { adminPin: newPin }, { merge: true })
-                .then(() => {
-                    adminPin = newPin;
-                    showToast('อัพเดต PIN สำเร็จ', 'success');
-                })
-                .catch(() => showToast('อัพเดต PIN ล้มเหลว', 'error'));
+
+        // ==================== THEME SYSTEM ====================
+
+        const themeDefaults = {
+            primary: '#0ea5e9', secondary: '#6366f1', accent: '#f59e0b',
+            bg: '#f0f9ff', surface: '#ffffff', text: '#1e293b',
+            textMuted: '#64748b', headerBg: '#ffffff', footerBg: '#f8fafc',
+            fontFamily: 'Prompt,sans-serif', fontSize: 16
+        };
+
+        function applyThemeVars(vars) {
+            const root = document.documentElement;
+            if (vars.primary) { root.style.setProperty('--color-primary', vars.primary); updateSwatchUI('primary', vars.primary); }
+            if (vars.secondary) { root.style.setProperty('--color-secondary', vars.secondary); updateSwatchUI('secondary', vars.secondary); }
+            if (vars.accent) { root.style.setProperty('--color-accent', vars.accent); updateSwatchUI('accent', vars.accent); }
+            if (vars.bg) { root.style.setProperty('--color-bg', vars.bg); document.body.style.background = vars.bg; updateSwatchUI('bg', vars.bg); }
+            if (vars.text) { root.style.setProperty('--color-text', vars.text); updateSwatchUI('text', vars.text); }
+            if (vars.textMuted) root.style.setProperty('--color-text-muted', vars.textMuted);
+            if (vars.headerBg) { root.style.setProperty('--color-header-bg', vars.headerBg); updateSwatchUI('headerBg', vars.headerBg); }
+            if (vars.footerBg) { root.style.setProperty('--color-footer-bg', vars.footerBg); updateSwatchUI('footerBg', vars.footerBg); }
+            if (vars.fontFamily) { document.body.style.fontFamily = vars.fontFamily; livePreviewFont(vars.fontFamily, false); }
+            if (vars.fontSize) livePreviewFontSize(vars.fontSize, false);
+            updateThemePreviewBar();
         }
-        
-        function clearAllData() { 
-            if (!checkAccess('manage_settings')) return;
-            if (confirm('ยืนยันการล้างข้อมูลทั้งหมด? การกระทำนี้ไม่สามารถย้อนกลับได้!')) {
-                showToast('ล้างข้อมูลแล้ว', 'success');
+
+        function updateSwatchUI(key, value) {
+            const el = document.getElementById(`tc_${key}`);
+            const valEl = document.getElementById(`tc_${key}_val`);
+            if (el) el.value = value;
+            if (valEl) valEl.textContent = value;
+            // Update preview dots
+            const dots = { primary:'previewPrimary', secondary:'previewSecondary', accent:'previewAccent', bg:'previewBg', headerBg:'previewHeader', text:'previewText' };
+            if (dots[key]) {
+                const dot = document.getElementById(dots[key]);
+                if (dot) {
+                    if (key === 'text') { dot.style.color = value; }
+                    else { dot.style.background = value; }
+                }
             }
         }
-        
-        // Placeholder functions
-        function addProduct() { 
+
+        function updateThemePreviewBar() {
+            const bar = document.getElementById('themePreviewBar');
+            if (bar) {
+                const p = document.getElementById('tc_primary')?.value || '#0ea5e9';
+                const s = document.getElementById('tc_secondary')?.value || '#6366f1';
+                bar.style.background = `linear-gradient(90deg, ${p} 0%, ${s} 100%)`;
+            }
+        }
+
+        function livePreviewColor(key, value) {
+            const keyMap = { primary:'--color-primary', secondary:'--color-secondary', accent:'--color-accent', bg:'--color-bg', text:'--color-text', textMuted:'--color-text-muted', headerBg:'--color-header-bg', footerBg:'--color-footer-bg' };
+            if (keyMap[key]) document.documentElement.style.setProperty(keyMap[key], value);
+            const valEl = document.getElementById(`tc_${key}_val`);
+            if (valEl) valEl.textContent = value;
+            if (key === 'bg') document.body.style.background = value;
+            // update preview dots
+            const dots = { primary:'previewPrimary', secondary:'previewSecondary', accent:'previewAccent', bg:'previewBg', headerBg:'previewHeader' };
+            if (dots[key]) { const d = document.getElementById(dots[key]); if(d) d.style.background = value; }
+            if (key === 'text') { const d = document.getElementById('previewText'); if(d) d.style.color = value; }
+            updateThemePreviewBar();
+        }
+
+        function livePreviewFont(value, apply = true) {
+            if (apply) document.body.style.fontFamily = value;
+            const sel = document.getElementById('tc_fontFamily');
+            if (sel) sel.value = value;
+        }
+
+        function livePreviewFontSize(value, apply = true) {
+            value = parseInt(value);
+            if (apply) document.documentElement.style.fontSize = value + 'px';
+            const el = document.getElementById('tc_fontSize');
+            const valEl = document.getElementById('tc_fontSize_val');
+            if (el) el.value = value;
+            if (valEl) valEl.textContent = value + 'px';
+        }
+
+        const themePresets = {
+            ocean:    { primary:'#0ea5e9', secondary:'#3b82f6', accent:'#f59e0b', bg:'#f0f9ff', text:'#0c4a6e', headerBg:'#ffffff', footerBg:'#e0f2fe' },
+            forest:   { primary:'#10b981', secondary:'#059669', accent:'#fbbf24', bg:'#f0fdf4', text:'#14532d', headerBg:'#ffffff', footerBg:'#dcfce7' },
+            sunset:   { primary:'#f97316', secondary:'#ef4444', accent:'#fbbf24', bg:'#fff7ed', text:'#7c2d12', headerBg:'#ffffff', footerBg:'#fee2e2' },
+            midnight: { primary:'#8b5cf6', secondary:'#6366f1', accent:'#f59e0b', bg:'#0f0f1a', text:'#e2e8f0', headerBg:'#1e1b4b', footerBg:'#1e1b4b' },
+        };
+
+        function applyPreset(name) {
+            const p = themePresets[name];
+            if (!p) return;
+            applyThemeVars(p);
+            showToast(`ใช้ธีม "${name}" แล้ว`, 'success');
+        }
+
+        function resetTheme() {
+            if (!confirm('รีเซ็ตธีมเป็นค่าเริ่มต้น?')) return;
+            applyThemeVars(themeDefaults);
+            showToast('รีเซ็ตธีมแล้ว', 'info');
+        }
+
+        async function saveTheme() {
+            if (!checkAccess('manage_settings')) return;
+            try {
+                const { doc, setDoc } = window.firestoreFns;
+                const themeData = {
+                    primary: document.getElementById('tc_primary')?.value || themeDefaults.primary,
+                    secondary: document.getElementById('tc_secondary')?.value || themeDefaults.secondary,
+                    accent: document.getElementById('tc_accent')?.value || themeDefaults.accent,
+                    bg: document.getElementById('tc_bg')?.value || themeDefaults.bg,
+                    text: document.getElementById('tc_text')?.value || themeDefaults.text,
+                    textMuted: document.getElementById('tc_textMuted')?.value || themeDefaults.textMuted,
+                    headerBg: document.getElementById('tc_headerBg')?.value || themeDefaults.headerBg,
+                    footerBg: document.getElementById('tc_footerBg')?.value || themeDefaults.footerBg,
+                    fontFamily: document.getElementById('tc_fontFamily')?.value || themeDefaults.fontFamily,
+                    fontSize: parseInt(document.getElementById('tc_fontSize')?.value || 16),
+                    updatedAt: new Date().toISOString()
+                };
+                await setDoc(doc(db, 'system', 'theme'), themeData, { merge: true });
+                applyThemeVars(themeData);
+                showToast('บันทึกธีมสำเร็จ ✓', 'success');
+            } catch (e) {
+                console.error('Save theme error:', e);
+                showToast('บันทึกธีมไม่สำเร็จ: ' + e.message, 'error');
+            }
+        }
+
+        async function loadTheme() {
+            try {
+                const { doc, getDoc } = window.firestoreFns;
+                const snap = await getDoc(doc(db, 'system', 'theme'));
+                if (snap.exists()) {
+                    applyThemeVars(snap.data());
+                }
+            } catch (e) {
+                console.warn('Load theme error (using defaults):', e);
+            }
+        }
+
+        // ==================== SITE SETTINGS ====================
+
+        let _currentKeywords = [];
+        let _currentShopTypes = [];
+
+        async function loadSiteSettings() {
+            try {
+                const { doc, getDoc } = window.firestoreFns;
+                const snap = await getDoc(doc(db, 'system', 'site_settings'));
+                if (!snap.exists()) return;
+                const d = snap.data();
+                if (document.getElementById('ss_siteName')) document.getElementById('ss_siteName').value = d.siteName || '';
+                if (document.getElementById('ss_description')) document.getElementById('ss_description').value = d.description || '';
+                if (document.getElementById('ss_seoTitle')) document.getElementById('ss_seoTitle').value = d.seoTitle || '';
+                if (document.getElementById('ss_siteUrl')) document.getElementById('ss_siteUrl').value = d.siteUrl || '';
+                if (document.getElementById('ss_favicon')) document.getElementById('ss_favicon').value = d.favicon || '';
+                if (document.getElementById('ss_ogImage')) document.getElementById('ss_ogImage').value = d.ogImage || '';
+                if (document.getElementById('ss_line')) document.getElementById('ss_line').value = d.line || '';
+                if (document.getElementById('ss_facebook')) document.getElementById('ss_facebook').value = d.facebook || '';
+                if (document.getElementById('ss_discord')) document.getElementById('ss_discord').value = d.discord || '';
+                if (document.getElementById('ss_phone')) document.getElementById('ss_phone').value = d.phone || '';
+                if (document.getElementById('ss_email')) document.getElementById('ss_email').value = d.email || '';
+                if (document.getElementById('ss_tiktok')) document.getElementById('ss_tiktok').value = d.tiktok || '';
+                // Shop types
+                _currentShopTypes = d.shopTypes || [];
+                document.querySelectorAll('#shopTypeTags .seo-tag').forEach(tag => {
+                    const type = tag.getAttribute('data-type');
+                    tag.classList.toggle('selected', _currentShopTypes.includes(type));
+                });
+                // Keywords
+                _currentKeywords = d.keywords || [];
+                renderKeywordTags();
+                // Update SEO preview
+                updateSeoPreview();
+            } catch (e) {
+                console.warn('Load site settings error:', e);
+            }
+        }
+
+        async function saveSiteSettings() {
+            if (!checkAccess('manage_settings')) return;
+            try {
+                const { doc, setDoc } = window.firestoreFns;
+                const data = {
+                    siteName: document.getElementById('ss_siteName')?.value || '',
+                    description: document.getElementById('ss_description')?.value || '',
+                    seoTitle: document.getElementById('ss_seoTitle')?.value || '',
+                    siteUrl: document.getElementById('ss_siteUrl')?.value || '',
+                    favicon: document.getElementById('ss_favicon')?.value || '',
+                    ogImage: document.getElementById('ss_ogImage')?.value || '',
+                    line: document.getElementById('ss_line')?.value || '',
+                    facebook: document.getElementById('ss_facebook')?.value || '',
+                    discord: document.getElementById('ss_discord')?.value || '',
+                    phone: document.getElementById('ss_phone')?.value || '',
+                    email: document.getElementById('ss_email')?.value || '',
+                    tiktok: document.getElementById('ss_tiktok')?.value || '',
+                    shopTypes: _currentShopTypes,
+                    keywords: _currentKeywords,
+                    updatedAt: new Date().toISOString()
+                };
+                await setDoc(doc(db, 'system', 'site_settings'), data, { merge: true });
+                // Update sidebar site name
+                const sidebarTitle = document.querySelector('#sidebar h1');
+                if (sidebarTitle && data.siteName) sidebarTitle.textContent = data.siteName;
+                showToast('บันทึกการตั้งค่าสำเร็จ ✓', 'success');
+            } catch (e) {
+                console.error('Save site settings error:', e);
+                showToast('บันทึกไม่สำเร็จ: ' + e.message, 'error');
+            }
+        }
+
+        function toggleShopType(el, type) {
+            el.classList.toggle('selected');
+            if (el.classList.contains('selected')) {
+                if (!_currentShopTypes.includes(type)) _currentShopTypes.push(type);
+            } else {
+                _currentShopTypes = _currentShopTypes.filter(t => t !== type);
+            }
+            document.getElementById('ss_shopTypes').value = _currentShopTypes.join(',');
+        }
+
+        function addKeyword(event) {
+            if (event.key !== 'Enter') return;
+            event.preventDefault();
+            const input = document.getElementById('ss_keywordInput');
+            const kw = input.value.trim();
+            if (!kw || _currentKeywords.includes(kw)) { input.value = ''; return; }
+            _currentKeywords.push(kw);
+            input.value = '';
+            renderKeywordTags();
+            document.getElementById('ss_keywords').value = _currentKeywords.join(',');
+        }
+
+        function removeKeyword(kw) {
+            _currentKeywords = _currentKeywords.filter(k => k !== kw);
+            renderKeywordTags();
+        }
+
+        function renderKeywordTags() {
+            const container = document.getElementById('keywordTags');
+            if (!container) return;
+            container.innerHTML = _currentKeywords.map(kw => `
+                <span class="seo-tag selected">
+                    ${kw}
+                    <span class="remove-tag" onclick="removeKeyword('${kw}')"><i class="fa-solid fa-xmark"></i></span>
+                </span>
+            `).join('');
+        }
+
+        function updateSeoPreview() {
+            const title = document.getElementById('ss_seoTitle')?.value || document.getElementById('ss_siteName')?.value || 'ชื่อเว็บไซต์ของคุณ';
+            const url = document.getElementById('ss_siteUrl')?.value || 'yourdomain.com';
+            const desc = document.getElementById('ss_description')?.value || 'คำอธิบายเว็บไซต์จะปรากฏที่นี่...';
+            const el1 = document.getElementById('seoTitlePreview');
+            const el2 = document.getElementById('seoUrlPreview');
+            const el3 = document.getElementById('seoDescPreview');
+            if (el1) el1.textContent = title;
+            if (el2) el2.textContent = 'https://' + url;
+            if (el3) el3.textContent = desc;
+        }
+
+        // Description char counter
+        document.addEventListener('DOMContentLoaded', () => {
+            const descEl = document.getElementById('ss_description');
+            const seoTitleEl = document.getElementById('ss_seoTitle');
+            const siteNameEl = document.getElementById('ss_siteName');
+            if (descEl) {
+                descEl.addEventListener('input', () => {
+                    const len = descEl.value.length;
+                    const counter = document.getElementById('descCharCount');
+                    if (counter) { counter.textContent = len + '/160'; counter.className = 'text-xs ' + (len > 160 ? 'text-red-500' : 'text-slate-400'); }
+                    updateSeoPreview();
+                });
+            }
+            if (seoTitleEl) seoTitleEl.addEventListener('input', updateSeoPreview);
+            if (siteNameEl) siteNameEl.addEventListener('input', updateSeoPreview);
+        });
+
+        // ==================== PRODUCTS MANAGEMENT ====================
+
+        let allProducts = [];
+
+        async function loadProducts() {
             if (!checkAccess('manage_products')) return;
-            showToast('ฟีเจอร์นี้กำลังพัฒนา', 'info'); 
+            const grid = document.getElementById('productsGrid');
+            if (!grid) return;
+            grid.innerHTML = '<div class="col-span-full text-center py-12"><div class="animate-spin w-8 h-8 border-4 border-sky-100 border-t-sky-400 rounded-full mx-auto mb-3"></div><p class="text-slate-400">กำลังโหลด...</p></div>';
+            try {
+                const { collection, getDocs, query, orderBy } = window.firestoreFns;
+                let products = [];
+                try {
+                    const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'));
+                    const snap = await getDocs(q);
+                    snap.forEach(d => products.push({ id: d.id, ...d.data() }));
+                } catch {
+                    const snap = await getDocs(collection(db, 'products'));
+                    snap.forEach(d => products.push({ id: d.id, ...d.data() }));
+                }
+                allProducts = products;
+                if (products.length === 0) {
+                    grid.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400"><div class="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fa-solid fa-box-open text-4xl"></i></div><p class="font-medium">ไม่มีสินค้าในระบบ</p><button onclick="addProduct()" class="mt-4 btn-modern text-sm px-6 py-2.5"><i class="fa-solid fa-plus mr-2"></i>เพิ่มสินค้าแรก</button></div>`;
+                    return;
+                }
+                grid.innerHTML = products.map(p => `
+                    <div class="bg-white border-2 border-slate-200 rounded-2xl overflow-hidden hover:border-sky-300 hover:shadow-lg transition-all group">
+                        ${p.imageUrl ? `<div class="h-40 bg-slate-50 overflow-hidden"><img src="${p.imageUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.parentElement.innerHTML='<div class=\\'h-full flex items-center justify-center text-slate-300\\'><i class=\\'fa-solid fa-image text-4xl\\'></i></div>'"></div>` : '<div class="h-40 bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center"><i class="fa-solid fa-box text-4xl text-slate-300"></i></div>'}
+                        <div class="p-5">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="font-bold text-slate-800 text-base leading-tight">${p.name || 'ไม่มีชื่อ'}</h3>
+                                <span class="text-xs px-2 py-1 rounded-full font-semibold ${p.isActive !== false ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500'} ml-2 shrink-0">${p.isActive !== false ? 'เปิดขาย' : 'ปิด'}</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-3 line-clamp-2">${p.description || '-'}</p>
+                            <div class="flex items-center justify-between">
+                                <div class="font-bold text-lg text-emerald-600">฿${Number(p.price || 0).toLocaleString()}</div>
+                                <div class="flex gap-2">
+                                    <button onclick="editProduct('${p.id}')" class="action-btn edit" title="แก้ไข"><i class="fa-solid fa-pen text-sm"></i></button>
+                                    <button onclick="deleteProduct('${p.id}')" class="action-btn ban" title="ลบ"><i class="fa-solid fa-trash text-sm"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (e) {
+                grid.innerHTML = `<div class="col-span-full text-center py-8 text-red-500">โหลดสินค้าไม่สำเร็จ: ${e.message}</div>`;
+            }
         }
-        function openComposeModal() { 
-            if (!checkAccess('send_messages')) return;
-            showToast('ฟีเจอร์นี้กำลังพัฒนา', 'info'); 
+
+        function addProduct() {
+            if (!checkAccess('manage_products')) return;
+            openProductModal(null);
         }
-        function switchFolder(folder) { showToast('ฟีเจอร์นี้กำลังพัฒนา', 'info'); }
-        function refreshMessages() { showToast('ฟีเจอร์นี้กำลังพัฒนา', 'info'); }
-        function toggleSelectAll() {}
-        function deleteSelected() {}
-        function searchMessages() {}
-        function prevPage() {}
-        function nextPage() {}
+
+        function editProduct(id) {
+            openProductModal(id);
+        }
+
+        function openProductModal(id) {
+            const existing = id ? allProducts.find(p => p.id === id) : null;
+            const modal = document.createElement('div');
+            modal.id = 'productModalDynamic';
+            modal.className = 'modal-overlay active';
+            modal.innerHTML = `
+                <div class="modal-content p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-slate-800"><i class="fa-solid fa-box text-sky-500 mr-2"></i>${id ? 'แก้ไขสินค้า' : 'เพิ่มสินค้าใหม่'}</h3>
+                        <button onclick="document.getElementById('productModalDynamic').remove()" class="p-2 hover:bg-slate-100 rounded-lg text-slate-400"><i class="fa-solid fa-xmark text-xl"></i></button>
+                    </div>
+                    <div class="space-y-4">
+                        <div><label class="block text-sm font-bold text-slate-700 mb-1">ชื่อสินค้า *</label>
+                        <input type="text" id="prd_name" value="${existing?.name || ''}" placeholder="ชื่อสินค้า..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sky-400"></div>
+                        <div><label class="block text-sm font-bold text-slate-700 mb-1">คำอธิบาย</label>
+                        <textarea id="prd_desc" rows="3" placeholder="รายละเอียดสินค้า..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sky-400 resize-none">${existing?.description || ''}</textarea></div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-bold text-slate-700 mb-1">ราคา (บาท) *</label>
+                            <input type="number" id="prd_price" value="${existing?.price || ''}" placeholder="0.00" min="0" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sky-400"></div>
+                            <div><label class="block text-sm font-bold text-slate-700 mb-1">Stock (ชิ้น)</label>
+                            <input type="number" id="prd_stock" value="${existing?.stock ?? ''}" placeholder="ไม่จำกัด" min="0" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sky-400"></div>
+                        </div>
+                        <div><label class="block text-sm font-bold text-slate-700 mb-1">รูปภาพ URL</label>
+                        <input type="text" id="prd_image" value="${existing?.imageUrl || ''}" placeholder="https://..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sky-400"></div>
+                        <div><label class="block text-sm font-bold text-slate-700 mb-1">หมวดหมู่</label>
+                        <input type="text" id="prd_cat" value="${existing?.category || ''}" placeholder="เช่น เกม, ของสะสม..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sky-400"></div>
+                        <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <input type="checkbox" id="prd_active" ${existing?.isActive !== false ? 'checked' : ''} class="w-5 h-5 rounded">
+                            <label for="prd_active" class="font-semibold text-slate-700">เปิดขายทันที</label>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 mt-6">
+                        <button onclick="document.getElementById('productModalDynamic').remove()" class="flex-1 btn-secondary">ยกเลิก</button>
+                        <button onclick="saveProduct('${id || ''}')" class="flex-1 btn-modern">บันทึก</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        async function saveProduct(id) {
+            try {
+                const { collection, doc, setDoc, updateDoc, serverTimestamp } = window.firestoreFns;
+                const name = document.getElementById('prd_name')?.value?.trim();
+                if (!name) { showToast('กรุณาใส่ชื่อสินค้า', 'error'); return; }
+                const price = parseFloat(document.getElementById('prd_price')?.value) || 0;
+                const data = {
+                    name,
+                    description: document.getElementById('prd_desc')?.value || '',
+                    price,
+                    stock: document.getElementById('prd_stock')?.value !== '' ? parseInt(document.getElementById('prd_stock').value) : null,
+                    imageUrl: document.getElementById('prd_image')?.value || '',
+                    category: document.getElementById('prd_cat')?.value || '',
+                    isActive: document.getElementById('prd_active')?.checked !== false,
+                    updatedAt: serverTimestamp()
+                };
+                if (id) {
+                    await updateDoc(doc(db, 'products', id), data);
+                } else {
+                    data.createdAt = serverTimestamp();
+                    await setDoc(doc(collection(db, 'products')), data);
+                }
+                document.getElementById('productModalDynamic')?.remove();
+                showToast(id ? 'แก้ไขสินค้าสำเร็จ' : 'เพิ่มสินค้าสำเร็จ', 'success');
+                loadProducts();
+            } catch (e) {
+                showToast('บันทึกไม่สำเร็จ: ' + e.message, 'error');
+            }
+        }
+
+        async function deleteProduct(id) {
+            if (!confirm('ยืนยันการลบสินค้านี้?')) return;
+            try {
+                const { doc, deleteDoc } = window.firestoreFns;
+                await deleteDoc(doc(db, 'products', id));
+                showToast('ลบสินค้าแล้ว', 'success');
+                loadProducts();
+            } catch (e) {
+                showToast('ลบไม่สำเร็จ: ' + e.message, 'error');
+            }
+        }
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
+                closeWebsiteOrderModal();
                 closeTopupModal();
                 closePaymentModal();
                 closeEditUserModal();
@@ -4737,3 +6249,4 @@
     </script>
 </body>
 </html>
+  

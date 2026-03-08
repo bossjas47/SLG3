@@ -1161,6 +1161,36 @@
                         orderId: orderId,
                         createdAt: serverTimestamp()
                     });
+
+                    // 7. บันทึกข้อมูลส่งไป Admin Panel (เพิ่มใหม่ตามคำขอ)
+                    // เก็บข้อมูลเว็บไซต์ทั้งหมดที่ Admin ต้องการตรวจสอบ
+                    const adminPanelRef = doc(collection(db, "admin_panel_websites"));
+                    transaction.set(adminPanelRef, {
+                        websiteId: subdomain,
+                        subdomain: subdomain,
+                        domain: `${subdomain}.panderx.xyz`,
+                        ownerId: currentUser.uid,
+                        ownerEmail: currentUser.email,
+                        ownerDisplayName: currentUserData?.displayName || currentUser.email.split('@')[0],
+                        packageId: packageId,
+                        packageName: packageName,
+                        durationDays: selectedDuration,
+                        expiryDate: expireDate,
+                        totalAmount: total,
+                        basePrice: basePrice,
+                        discountPercent: discountPercent,
+                        orderType: currentMode, // 'create' หรือ 'renew'
+                        orderId: orderId,
+                        status: 'active',
+                        adminReviewStatus: 'pending_review', // สำหรับ Admin ตรวจสอบ
+                        adminNotes: '',
+                        createdAt: serverTimestamp(),
+                        updatedAt: serverTimestamp(),
+                        adminNotified: false,
+                        sslEnabled: true,
+                        ipAddress: '', // สามารถเพิ่มได้ภายหลังถ้ามีระบบเก็บ IP
+                        userAgent: navigator.userAgent // บันทึก browser ที่ใช้สั่งซื้อ
+                    });
                 });
                 
                 // อัพเดตยอดเงินใน UI

@@ -1,0 +1,12 @@
+closeTopupModal();
+                closePaymentModal();
+                closeEditUserModal();
+                closeUserDetailModal();
+                closeRoleModal();
+                closeSpecialCurrencyModal();
+            }
+        });
+    </script>
+</body>
+</html>
+  
